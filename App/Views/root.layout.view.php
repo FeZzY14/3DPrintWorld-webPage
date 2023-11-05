@@ -61,7 +61,7 @@
 <?php } ?>
 <div>
     <footer class="footer-nav text-center text-lg-start text-white ">
-        <div class="container p-4 pb-0">
+        <div class="container p-4 pb-0 ">
             <section class="">
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
