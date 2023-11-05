@@ -60,7 +60,7 @@
 <?php } else { ?>
 <?php } ?>
 <div>
-    <footer class="footer-nav text-center text-lg-start text-white">
+    <footer class="footer-nav text-center text-lg-start text-white ">
         <div class="container p-4 pb-0">
             <section class="">
                 <div class="row">
