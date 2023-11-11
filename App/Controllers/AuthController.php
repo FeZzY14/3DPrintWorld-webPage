@@ -6,6 +6,7 @@ use App\Config\Configuration;
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
 use App\Core\Responses\ViewResponse;
+use App\Models\User;
 
 /**
  * Class AuthController
@@ -34,11 +35,29 @@ class AuthController extends AControllerBase
         if (isset($formData['submit'])) {
             $logged = $this->app->getAuth()->login($formData['login'], $formData['password']);
             if ($logged) {
-                return $this->redirect($this->url("admin.index"));
+                return $this->redirect($this->url("home.index"));
             }
         }
 
-        $data = ($logged === false ? ['message' => 'Zlý login alebo heslo!'] : []);
+        $data = ($logged === false ? ['message' => 'Incorrect login or password !'] : []);
+        return $this->html($data);
+    }
+
+    public function register(): Response
+    {
+        $formData = $this->app->getRequest()->getPost();
+        $logged = null;
+        if (isset($formData['submit'])) {
+            $user = new User();
+            $hash = password_hash($formData['password'], PASSWORD_DEFAULT);
+            $user->setLogin($formData['login']);
+            $user->setPassword($hash);
+            $user->setEmail($formData['email']);
+            $user->save();
+            return $this->redirect($this->url("home.index"));
+        }
+
+        $data = ($logged === false ? ['message' => 'Incorrect login or password !'] : []);
         return $this->html($data);
     }
 
@@ -49,6 +68,6 @@ class AuthController extends AControllerBase
     public function logout(): Response
     {
         $this->app->getAuth()->logout();
-        return $this->html();
+        return $this->redirect($this->url("home.index"));
     }
 }

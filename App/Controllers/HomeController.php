@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
+use App\Models\Item;
 
 /**
  * Class HomeController
@@ -28,7 +29,21 @@ class HomeController extends AControllerBase
      */
     public function index(): Response
     {
-        return $this->html();
+        $items = Item::getAll();
+        $num = rand(0,(count($items)-3));
+
+        $featured = [$items[$num], $items[$num + 1], $items[$num + 2]];
+
+        $num = rand(0,(count($items)-3));
+
+        $popular = [$items[$num], $items[$num + 1], $items[$num + 2]];
+
+        return $this->html(
+            [
+                'featured' => $featured,
+                'popular' => $popular
+            ]
+        );
     }
 
     /**

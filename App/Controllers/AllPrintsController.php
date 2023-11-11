@@ -12,4 +12,8 @@ class AllPrintsController extends AControllerBase
     {
         return $this->html();
     }
+    public function allPrints(): Response
+    {
+        return $this->html();
+    }
 }

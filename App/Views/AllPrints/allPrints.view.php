@@ -171,7 +171,12 @@
                     <div class="card-body">
                         <h3 class="card-title">stackable bottle holder</h3>
                         <p class="card-text">
-                            A stackable bottle holder to store your bottles of all kind nicely on top of each other.
+                            stackable bottle holder to store your bottles of all kind nicely on top of each other. This way you save space in your cabinet, shelf or even your fridge.
+                            The dimensions of one base element are 88.2mm x 88.2mm x 200mm (Width x Height x Length). Bottles for a diameter of up to 85mm are supported, which should basically fit every normal bottle.
+
+                            It even fits wine bottles quite nicely, wheras I would not recommend to stack more then two, as they get quite heavy then. (Do that at your own risk, or if you are using a really strong material, as the walls supporting the whole thing are only 1.6mm wide!)
+
+                            There is also a clip to connect two “towers” with each other.
                         </p>
                         <h3 class="card-prize">5,99$</h3>
                     </div>
@@ -287,8 +292,8 @@
             </a>
         </li>
         <li class="page-item"><a class="page-link active active-page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="page1">2</a></li>
+        <li class="page-item"><a class="page-link" href="page2">3</a></li>
         <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
