@@ -13,6 +13,7 @@ use App\Models\Item;
  */
 class HomeController extends AControllerBase
 {
+    private bool $messShown = false;
     /**
      * Authorize controller actions
      * @param $action
@@ -38,8 +39,11 @@ class HomeController extends AControllerBase
 
         $popular = [$items[$num], $items[$num + 1], $items[$num + 2]];
 
+        $mess = $this->request()->getValue('showMess');
+
         return $this->html(
             [
+                'showMess' => $mess,
                 'featured' => $featured,
                 'popular' => $popular
             ]

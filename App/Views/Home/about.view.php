@@ -1,4 +1,5 @@
-<div class="container item-listing">
+<link rel="stylesheet" href="public/css/aboutCSS.css">
+<div class="container item-listing about">
     <div class="row">
         <div class="col">
             <h3 class="about_heading">About Us</h3>

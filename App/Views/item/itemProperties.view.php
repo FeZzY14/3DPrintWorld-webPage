@@ -3,6 +3,8 @@
 /** @var App\Models\Item $item */
 /** @var App\Core\LinkGenerator $link */
 ?>
+<link rel="stylesheet" href="public/css/itemPropCSS.css">
+<link rel="stylesheet" href="public/css/itemCSS.css">
 <div class="container item-listing">
     <div class="row">
         <div class="col">

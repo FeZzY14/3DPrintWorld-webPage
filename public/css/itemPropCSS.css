@@ -1,0 +1,27 @@
+.img-fluid {
+    max-height: 500px;
+}
+
+.item-listing {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.item-page {
+    border-radius: 8px 8px 8px 8px;
+}
+.dropdown {
+    padding: 30px;
+    text-align: left;
+}
+.dropdown_button {
+    background-color: #5c9ead;
+}
+.dropdown_button:hover {
+    background-color: #326273;
+}
+.dropdown_button[aria-expanded="true"] {
+    background-color: #326273;
+}
+.dropdown-item:active {
+    background-color: #326273;
+}

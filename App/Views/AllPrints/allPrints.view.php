@@ -1,5 +1,6 @@
 
-
+<link rel="stylesheet" href="public/css/allItemsCSS.css">
+<link rel="stylesheet" href="public/css/itemCSS.css">
 <div class="search-bar">
     <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

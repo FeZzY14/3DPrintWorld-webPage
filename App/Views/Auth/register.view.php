@@ -15,7 +15,7 @@ $layout = 'auth';
                 <i class="bi bi-lock" aria-hidden="true"></i>
             </div>
             <div class="col-lg-12 login-title">
-                Login
+                Register
             </div>
             <div class="col-lg-12 login-form">
                 <div class="col-lg-12 login-form">

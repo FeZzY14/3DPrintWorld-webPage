@@ -2,16 +2,40 @@
 
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
+/** @var Array $data */
+/** @var App\Models\Item $item */
+/** @var App\Core\LinkGenerator $link */
 ?>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="public/css/homeCSS.css">
+<link rel="stylesheet" href="public/css/itemCSS.css">
 <div class="home-logo">
-    <?php if ($auth->isLogged()) { ?>
-        <?=$auth->getLoggedUserName() ?>
-    <?php } ?>
     <img class="img-fluid logo_home" src="resources/logo.png" alt="logo image">
 </div>
 <div class="container">
     <div class="row">
         <div class="description">
+            <?php if ($data['showMess'] == 1)
+                 { ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-unlock"></i>
+                        You have successfully log in as <strong><?= $auth->getLoggedUserName() ?></strong> have a great time
+                        here.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } else if ($data['showMess'] == 2){ ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-lock"></i>
+                        You have successfully log out.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            <?php } else if ($data['showMess'] == 3){ ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-r-circle"></i>
+                    You have successfully registered.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php } ?>
             <h1 class="home_welcome">Welcome to 3D Print World</h1>
             Your Destination for Customized 3D Creations<br>
             Are you ready to step into a world where imagination knows no bounds?<br>
@@ -82,9 +106,6 @@
         </div>
         <h2 class="item-type">Featured</h2>
         <?php
-        /** @var Array $data */
-        /** @var App\Models\Item $item */
-        /** @var App\Core\LinkGenerator $link */
         foreach ($data['featured'] as $item) { ?>
             <div class="col-md-4">
                 <div class="card-sl">

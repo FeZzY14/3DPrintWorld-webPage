@@ -35,7 +35,8 @@ class AuthController extends AControllerBase
         if (isset($formData['submit'])) {
             $logged = $this->app->getAuth()->login($formData['login'], $formData['password']);
             if ($logged) {
-                return $this->redirect($this->url("home.index"));
+                $showMess = 1;
+                return $this->redirect($this->url("home.index",['showMess' => $showMess]));
             }
         }
 
@@ -54,7 +55,8 @@ class AuthController extends AControllerBase
             $user->setPassword($hash);
             $user->setEmail($formData['email']);
             $user->save();
-            return $this->redirect($this->url("home.index"));
+            $showMess = 3;
+            return $this->redirect($this->url("home.index",['showMess' => $showMess]));
         }
 
         $data = ($logged === false ? ['message' => 'Incorrect login or password !'] : []);
@@ -68,6 +70,7 @@ class AuthController extends AControllerBase
     public function logout(): Response
     {
         $this->app->getAuth()->logout();
-        return $this->redirect($this->url("home.index"));
+        $showMess = 2;
+        return $this->redirect($this->url("home.index",['showMess' => $showMess]));
     }
 }

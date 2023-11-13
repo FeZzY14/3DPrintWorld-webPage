@@ -44,15 +44,6 @@ class AdvancedAuthenticator implements IAuthenticator
             }
         }
         return false;
-        /*
-        $user = User::getAll("login = ? and password = ?", [$login, $password] );
-        if ($user != null) {
-            $_SESSION['user'] = $login;
-            return true;
-        } else {
-            return false;
-        }
-        */
     }
 
     /**
