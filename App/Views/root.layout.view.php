@@ -36,7 +36,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="<?php if (str_starts_with($_SERVER['REQUEST_URI'], "/?c=allPrints")) { ?>nav-link active<?php } else { ?>nav-link<?php } ?>"
-                       href="<?= $link->url("allPrints.allPrints") ?>">All prints</a>
+                       href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">All prints</a>
                 </li>
                 <li class="nav-item">
                     <a class="<?php if ($_SERVER['REQUEST_URI'] == "/?c=home&a=customPrint") { ?>nav-link active<?php } else { ?>nav-link<?php } ?>"

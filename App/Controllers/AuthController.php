@@ -7,6 +7,7 @@ use App\Core\AControllerBase;
 use App\Core\Responses\Response;
 use App\Core\Responses\ViewResponse;
 use App\Models\User;
+use App\Helpers\AuthMessage;
 
 /**
  * Class AuthController
