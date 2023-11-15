@@ -51,6 +51,18 @@ class AuthController extends AControllerBase
         $logged = null;
         if (isset($formData['submit'])) {
             $user = new User();
+            if ($formData['password'] != $formData['password2']) {
+                $data = ['message' => 'password does not - match please repeat your password correctly',
+                    'login' => $formData['login'], 'email' => $formData['email']];
+                return $this->html($data);
+            }
+            $allUsers = User::getAll();
+            foreach ($allUsers as $existsUser) {
+                if ($existsUser->getLogin() == $formData['login']) {
+                    $data = ['message' => 'login already exist - please select different login', 'email' => $formData['email']];
+                    return $this->html($data);
+                }
+            }
             $hash = password_hash($formData['password'], PASSWORD_DEFAULT);
             $user->setLogin($formData['login']);
             $user->setPassword($hash);
@@ -59,9 +71,7 @@ class AuthController extends AControllerBase
             $showMess = 3;
             return $this->redirect($this->url("home.index",['showMess' => $showMess]));
         }
-
-        $data = ($logged === false ? ['message' => 'Incorrect login or password !'] : []);
-        return $this->html($data);
+        return $this->html();
     }
 
     /**

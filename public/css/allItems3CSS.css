@@ -149,3 +149,10 @@
 .scrollarea {
     overflow-y: auto;
 }
+.result-text {
+    padding-top: 20px;
+    color: #326273;
+}
+.remove-search {
+    color: #e39774;
+}

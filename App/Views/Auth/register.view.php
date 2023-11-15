@@ -22,11 +22,11 @@ $layout = 'auth';
                     <form class="form-signin" method="post" action="<?= $link->url("register") ?>">
                         <div class="form-group">
                             <label class="form-control-label" for="login">LOGIN</label>
-                            <input type="text" class="form-control" name="login" id="login" required autofocus>
+                            <input value="<?= @$data['login'] ?>" type="text" class="form-control" name="login" id="login" required autofocus>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label" for="email">EMAIL</label>
-                            <input type="email" class="form-control" name="email" id="email" required>
+                            <input value="<?= @$data['email'] ?>" type="email" class="form-control" name="email" id="email" required>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label" for="password">PASSWORD</label>

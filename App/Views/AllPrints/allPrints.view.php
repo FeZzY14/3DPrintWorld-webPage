@@ -7,13 +7,19 @@
 /** @var Array $data */
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="public/css/allItems2.CSS.css">
+<link rel="stylesheet" href="public/css/allItems3CSS.css">
 <link rel="stylesheet" href="public/css/itemCSS.css">
 <div class="search-bar">
-    <form class="d-flex" role="search" method="post" action="<?= $link->url('allPrints.allPrints')?>">
+    <form class="d-flex" role="search" method="post" action="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'])])?>">
         <input name="search" id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success search-button" name="submit" type="submit">Search</button>
     </form>
+    <?php if ($data['search'] != '') {?>
+        <div class="result-text">
+            <?=$data['numOfRes']?> results for search: '<?=trim($data['search'], '%')?>'<br>
+            <a class="remove-search" href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">remove search</a>
+        </div>
+    <?php }?>
 </div>
 
 <nav class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column" id="sidebar">
@@ -190,7 +196,7 @@
     <ul class="pagination justify-content-center">
         <?php if ($data['pageNum'] > 1) { ?>
             <li class="page-item">
-                <a class="page-link" href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] - 1)]) ?>"
+                <a class="page-link" href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] - 1), 'search' => $data['search']]) ?>"
                    aria-label="Previous">
                     <span aria-hidden="true">&laquo; previous</span>
                 </a>
@@ -198,7 +204,7 @@
         <?php } ?>
         <?php if (!$data['endItems']) { ?>
             <li class="page-item">
-                <a class="page-link" href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] + 1)]) ?>"
+                <a class="page-link" href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] + 1), 'search' => $data['search']]) ?>"
                    aria-label="Next">
                     <span aria-hidden="true">next &raquo;</span>
                 </a>

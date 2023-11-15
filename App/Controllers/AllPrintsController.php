@@ -16,11 +16,18 @@ class AllPrintsController extends AControllerBase
 
     public function allPrints(): Response
     {
+        //todo pagination for search not working
         $pageNum = $this->request()->getValue('page');
         $formData = $this->app->getRequest()->getPost();
+        $search = $this->request()->getValue('search');
+        $numOfRes = 0;
         if (isset($formData['submit'])) {
             $search = '%'.$formData['search'].'%';
             $allItems = Item::getAll(whereClause: "`title` like ? ",whereParams: [$search]);
+            $numOfRes = sizeof($allItems);
+        } else if ($search != '') {
+            $allItems = Item::getAll(whereClause: "`title` like ? ",whereParams: [$search]);
+            $numOfRes = sizeof($allItems);
         } else {
             $allItems = Item::getAll();
         }
@@ -37,6 +44,8 @@ class AllPrintsController extends AControllerBase
         }
         return $this->html(
             [
+                'numOfRes' => $numOfRes,
+                'search' => $search,
                 'endItems' => $endItems,
                 'pageNum' => $pageNum,
                 'items' => $items

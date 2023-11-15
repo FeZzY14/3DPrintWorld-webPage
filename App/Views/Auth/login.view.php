@@ -4,7 +4,7 @@ $layout = 'auth';
 /** @var Array $data */
 /** @var \App\Core\LinkGenerator $link */
 ?>
-<link rel="stylesheet" href="public/css/loginCSS.css">
+<link rel="stylesheet" href="public/css/loginCSS2.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="container login">
@@ -32,6 +32,9 @@ $layout = 'auth';
                         <div class="col-lg-12">
                             <div class="col-lg-6 login-btm login-text">
                                 <?= @$data['message'] ?>
+                            </div>
+                            <div class="register-text">
+                                Not registered ? <a class="register-link" href="<?= $link->url("register") ?>">register here</a>
                             </div>
                             <div class="col-lg-6 login-btm login-button">
                                 <button type="submit" class="btn btn-outline-primary" name="submit">LOGIN</button>
