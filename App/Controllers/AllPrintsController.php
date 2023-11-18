@@ -20,17 +20,25 @@ class AllPrintsController extends AControllerBase
         $pageNum = $this->request()->getValue('page');
         $formData = $this->app->getRequest()->getPost();
         $search = $this->request()->getValue('search');
+        $category = $this->request()->getValue('category');
         $numOfRes = 0;
+
         if (isset($formData['submit'])) {
             $search = '%'.$formData['search'].'%';
-            $allItems = Item::getAll(whereClause: "`title` like ? ",whereParams: [$search]);
+            $allItems = Item::getAll(whereClause: "`title` like ?",whereParams: [$search]);
             $numOfRes = sizeof($allItems);
         } else if ($search != '') {
-            $allItems = Item::getAll(whereClause: "`title` like ? ",whereParams: [$search]);
+            $allItems = Item::getAll(whereClause: "`title` like ?", whereParams: [$search]);
             $numOfRes = sizeof($allItems);
         } else {
-            $allItems = Item::getAll();
+            if ($category != '') {
+                $allItems = Item::getAll(whereClause: "`category` = ?", whereParams: [$category]);
+                $numOfRes = sizeof($allItems);
+            } else {
+                $allItems = Item::getAll();
+            }
         }
+
         $items = array_slice($allItems, ($pageNum - 1) * 20, 20);
 
         $endItems = false;
@@ -44,6 +52,7 @@ class AllPrintsController extends AControllerBase
         }
         return $this->html(
             [
+                'category' => $category,
                 'numOfRes' => $numOfRes,
                 'search' => $search,
                 'endItems' => $endItems,

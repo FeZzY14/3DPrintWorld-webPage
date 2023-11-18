@@ -7,20 +7,46 @@
 /** @var Array $data */
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="public/css/allItems3CSS.css">
+<link rel="stylesheet" href="public/css/allItemsCSS.css">
 <link rel="stylesheet" href="public/css/itemCSS.css">
-<div class="search-bar">
-    <form class="d-flex" role="search" method="post" action="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'])])?>">
-        <input name="search" id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success search-button" name="submit" type="submit">Search</button>
-    </form>
-    <?php if ($data['search'] != '') {?>
-        <div class="result-text">
-            <?=$data['numOfRes']?> results for search: '<?=trim($data['search'], '%')?>'<br>
-            <a class="remove-search" href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">remove search</a>
+<div class="filters">
+    <div class="search-bar">
+        <form class="d-flex" role="search" method="post"
+              action="<?= $link->url('allPrints.allPrints', ['page' => 1]) ?>">
+            <div class="input-group">
+                <input name="search" id="search" class="form-control" type="search" placeholder="Search"
+                       aria-label="Search">
+                <button class="btn btn-outline-success search-button" name="submit" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <form class="d-flex" role="form" method="post"
+          action="<?= $link->url('allPrints.allPrints', ['page' => 1]) ?>">
+        <div class="prize">
+            <div class="input-group prize-group">
+                <input type="number" min="0" max="1000" class="form-control" placeholder="min prize"
+                       aria-label="min prize" name="minPrize">
+                <span class="input-group-text">-</span>
+                <input type="number" min="0" max="1000" class="form-control" placeholder="max prize"
+                       aria-label="max prize" name="maxPrize">
+                <button class="btn btn-outline-success search-button" name="filter" type="submit">Filter</button>
+            </div>
         </div>
-    <?php }?>
+    </form>
 </div>
+
+<?php if ($data['search'] != '') { ?>
+    <div class="result-text">
+        <?= $data['numOfRes'] ?> results for search: '<?= trim($data['search'], '%') ?>'<br>
+        <a class="remove-search" href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">remove search</a>
+    </div>
+<?php } ?>
+<?php if ($data['category'] != '') { ?>
+    <div class="result-text">
+        <?= $data['numOfRes'] ?> results for category: '<?= trim($data['category'], '%') ?>'<br>
+        <a class="remove-search" href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">remove filter</a>
+    </div>
+<?php } ?>
 
 <nav class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column" id="sidebar">
     <ul class="nav flex-column text-white w-100">
@@ -31,8 +57,11 @@
             </button>
             <div class="collapse" id="orders-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">Puzzle</a></li>
-                    <li><a href="#" class="collapse-link">Toys for children</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "others", 'page' => 1]) ?>"
+                           class="collapse-link">Puzzle</a></li>
+                    <li>
+                        <a href="<?= $link->url("allPrints.allPrints", ['category' => "Toys for children", 'page' => 1]) ?>"
+                           class="collapse-link">Toys for children</a></li>
                     <li><a href="#" class="collapse-link">Table games</a></li>
                     <li><a href="#" class="collapse-link">Action figures</a></li>
                 </ul>
@@ -45,24 +74,9 @@
             </button>
             <div class="collapse" id="orders-collapse1">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">..</a></li>
-                    <li><a href="#" class="collapse-link">..</a></li>
-                    <li><a href="#" class="collapse-link">..</a></li>
-                    <li><a href="#" class="collapse-link">..</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                    data-bs-toggle="collapse" data-bs-target="#orders-collapse2" aria-expanded="false">
-                <i class="bi bi-caret-right-fill arrow-sidebar"></i>kitchen
-            </button>
-            <div class="collapse" id="orders-collapse2">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
+                    <li><a href="#" class="collapse-link">Home decoration</a></li>
+                    <li><a href="#" class="collapse-link">Organizers</a></li>
+                    <li><a href="#" class="collapse-link">Bathroom accessories</a></li>
                 </ul>
             </div>
         </li>
@@ -73,10 +87,9 @@
             </button>
             <div class="collapse" id="orders-collapse3">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
+                    <li><a href="#" class="collapse-link">Phone stands</a></li>
+                    <li><a href="#" class="collapse-link">Laptop stands</a></li>
+                    <li><a href="#" class="collapse-link">Headphone stands</a></li>
                 </ul>
             </div>
         </li>
@@ -87,10 +100,9 @@
             </button>
             <div class="collapse" id="orders-collapse4">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
+                    <li><a href="#" class="collapse-link">Garden accessories</a></li>
+                    <li><a href="#" class="collapse-link">Plant pots</a></li>
+                    <li><a href="#" class="collapse-link">Planters</a></li>
                 </ul>
             </div>
         </li>
@@ -101,24 +113,11 @@
             </button>
             <div class="collapse" id="orders-collapse5">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                    data-bs-toggle="collapse" data-bs-target="#orders-collapse6" aria-expanded="false">
-                <i class="bi bi-caret-right-fill arrow-sidebar"></i>education
-            </button>
-            <div class="collapse" id="orders-collapse6">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
+                    <li><a href="#" class="collapse-link">Desk organizers</a></li>
+                    <li><a href="#" class="collapse-link">Monitor stands</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Cable management"]) ?>"
+                           class="collapse-link">Cable management</a></li>
+                    <li><a href="#" class="collapse-link">Pen holders</a></li>
                 </ul>
             </div>
         </li>
@@ -129,10 +128,8 @@
             </button>
             <div class="collapse" id="orders-collapse7">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
+                    <li><a href="#" class="collapse-link">Phone holders</a></li>
+                    <li><a href="#" class="collapse-link">Replacement parts</a></li>
                 </ul>
             </div>
         </li>
@@ -143,10 +140,9 @@
             </button>
             <div class="collapse" id="orders-collapse8">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
-                    <li><a href="#" class="collapse-link">--</a></li>
+                    <li><a href="#" class="collapse-link">Fitness equipment</a></li>
+                    <li><a href="#" class="collapse-link">Cycling</a></li>
+                    <li><a href="#" class="collapse-link">Camping gear</a></li>
                 </ul>
             </div>
     </ul>
@@ -196,7 +192,8 @@
     <ul class="pagination justify-content-center">
         <?php if ($data['pageNum'] > 1) { ?>
             <li class="page-item">
-                <a class="page-link" href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] - 1), 'search' => $data['search']]) ?>"
+                <a class="page-link"
+                   href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] - 1), 'search' => $data['search'], 'category' => $data['category']]) ?>"
                    aria-label="Previous">
                     <span aria-hidden="true">&laquo; previous</span>
                 </a>
@@ -204,7 +201,8 @@
         <?php } ?>
         <?php if (!$data['endItems']) { ?>
             <li class="page-item">
-                <a class="page-link" href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] + 1), 'search' => $data['search']]) ?>"
+                <a class="page-link"
+                   href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] + 1), 'search' => $data['search'], 'category' => $data['category']]) ?>"
                    aria-label="Next">
                     <span aria-hidden="true">next &raquo;</span>
                 </a>

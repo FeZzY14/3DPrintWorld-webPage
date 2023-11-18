@@ -35,7 +35,7 @@
                        href="<?= $link->url("home.index") ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="<?php if (str_starts_with($_SERVER['REQUEST_URI'], "/?c=allPrints")) { ?>nav-link active<?php } else { ?>nav-link<?php } ?>"
+                    <a class="<?php if (str_ends_with($_SERVER['REQUEST_URI'], "a=allPrints")) { ?>nav-link active<?php } else { ?>nav-link<?php } ?>"
                        href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">All prints</a>
                 </li>
                 <li class="nav-item">
