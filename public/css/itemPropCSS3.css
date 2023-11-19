@@ -9,19 +9,26 @@
 .item-page {
     border-radius: 8px 8px 8px 8px;
 }
-.dropdown {
-    padding: 30px;
-    text-align: left;
+.selects{
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
-.dropdown_button {
+.form-select {
     background-color: #5c9ead;
+    color: white;
 }
-.dropdown_button:hover {
-    background-color: #326273;
+
+.option:hover {
+    background-color: #e39774;
+}
+
+.colorExample {
+    margin-top: 10px;
+    border-radius: 5px;
 }
 .dropdown_button[aria-expanded="true"] {
     background-color: #326273;
 }
 .dropdown-item:active {
-    background-color: #326273;
+    background-color: #d2d0d0;
 }

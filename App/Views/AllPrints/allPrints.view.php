@@ -12,39 +12,49 @@
 <div class="filters">
     <div class="search-bar">
         <form class="d-flex" role="search" method="post"
-              action="<?= $link->url('allPrints.allPrints', ['page' => 1]) ?>">
+              action="<?= $link->url('allPrints.allPrints', ['page' => 1, 'minPrize' => $data['minPrize'], 'maxPrize' => $data['maxPrize']]) ?>">
             <div class="input-group">
                 <input name="search" id="search" class="form-control" type="search" placeholder="Search"
                        aria-label="Search">
-                <button class="btn btn-outline-success search-button" name="submit" type="submit">Search</button>
+                <button class="btn btn-outline-success search-button" name="searchSubmit">Search</button>
             </div>
         </form>
     </div>
     <form class="d-flex" role="form" method="post"
-          action="<?= $link->url('allPrints.allPrints', ['page' => 1]) ?>">
+          action="<?= $link->url('allPrints.allPrints', ['page' => 1, 'search' => $data['search']]) ?>">
         <div class="prize">
             <div class="input-group prize-group">
                 <input type="number" min="0" max="1000" class="form-control" placeholder="min prize"
-                       aria-label="min prize" name="minPrize">
+                       aria-label="min prize" name="minPrize" required>
                 <span class="input-group-text">-</span>
                 <input type="number" min="0" max="1000" class="form-control" placeholder="max prize"
-                       aria-label="max prize" name="maxPrize">
-                <button class="btn btn-outline-success search-button" name="filter" type="submit">Filter</button>
+                       aria-label="max prize" name="maxPrize" required>
+                <button class="btn btn-outline-success search-button" name="filter">Filter</button>
             </div>
         </div>
     </form>
 </div>
 
-<?php if ($data['search'] != '') { ?>
+<?php if ($data['search'] != '' && $data['minPrize'] != '' && $data['maxPrize']) { ?>
     <div class="result-text">
-        <?= $data['numOfRes'] ?> results for search: '<?= trim($data['search'], '%') ?>'<br>
-        <a class="remove-search" href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">remove search</a>
+        <?= $data['numOfRes'] ?> results for search: '<?= trim($data['search'], '%') ?>' and
+            for min prize <?= $data['minPrize'] ?>$ and max prize <?= $data['maxPrize']?>$<br>
+        <a class="remove-search" href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">remove filters</a>
     </div>
-<?php } ?>
-<?php if ($data['category'] != '') { ?>
+<?php } else if ($data['category'] != '') { ?>
     <div class="result-text">
         <?= $data['numOfRes'] ?> results for category: '<?= trim($data['category'], '%') ?>'<br>
         <a class="remove-search" href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">remove filter</a>
+    </div>
+<?php } else if ($data['minPrize'] != '' && $data['maxPrize']) { ?>
+    <div class="result-text">
+        <?= $data['numOfRes'] ?> results for min prize <?= $data['minPrize'] ?>$ and max prize <?= $data['maxPrize'] ?>$<br>
+        <a class="remove-search" href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">remove filter</a>
+    </div>
+<?php } else if ($data['search'] != '') { ?>
+    <div class="result-text">
+        <?= $data['numOfRes'] ?> results for search: '<?= trim($data['search'], '%') ?>'<br>
+        <a class="remove-search" href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">remove search</a>
     </div>
 <?php } ?>
 
@@ -193,7 +203,7 @@
         <?php if ($data['pageNum'] > 1) { ?>
             <li class="page-item">
                 <a class="page-link"
-                   href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] - 1), 'search' => $data['search'], 'category' => $data['category']]) ?>"
+                   href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] - 1), 'search' => $data['search'], 'category' => $data['category'], 'minPrize' => $data['minPrize'], 'maxPrize' => $data['maxPrize']]) ?>"
                    aria-label="Previous">
                     <span aria-hidden="true">&laquo; previous</span>
                 </a>
@@ -202,7 +212,7 @@
         <?php if (!$data['endItems']) { ?>
             <li class="page-item">
                 <a class="page-link"
-                   href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] + 1), 'search' => $data['search'], 'category' => $data['category']]) ?>"
+                   href="<?= $link->url('allPrints.allPrints', ['page' => ($data['pageNum'] + 1), 'search' => $data['search'], 'category' => $data['category'], 'minPrize' => $data['minPrize'], 'maxPrize' => $data['maxPrize']]) ?>"
                    aria-label="Next">
                     <span aria-hidden="true">next &raquo;</span>
                 </a>

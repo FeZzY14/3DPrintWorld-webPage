@@ -16,19 +16,41 @@ class AllPrintsController extends AControllerBase
 
     public function allPrints(): Response
     {
-        //done pagination for search not working
         $pageNum = $this->request()->getValue('page');
         $formData = $this->app->getRequest()->getPost();
         $search = $this->request()->getValue('search');
         $category = $this->request()->getValue('category');
+        $maxPrize = $this->request()->getValue('maxPrize');
+        $minPrize = $this->request()->getValue('minPrize');
         $numOfRes = 0;
 
-        if (isset($formData['submit'])) {
-            $search = '%'.$formData['search'].'%';
-            $allItems = Item::getAll(whereClause: "`title` like ?",whereParams: [$search]);
-            $numOfRes = sizeof($allItems);
+        if (isset($formData['searchSubmit'])) {
+            if ($maxPrize != '' && $minPrize != '') {
+                $search = '%'.$formData['search'].'%';
+                $allItems = Item::getAll(whereClause: "`prize` >= ? and `prize` <= ? and `title` like ?", whereParams: [$minPrize, $maxPrize, $search]);
+                $numOfRes = sizeof($allItems);
+            } else {
+                $search = '%'.$formData['search'].'%';
+                $allItems = Item::getAll(whereClause: "`title` like ?",whereParams: [$search]);
+                $numOfRes = sizeof($allItems);
+            }
+        } else if (isset($formData['filter'])) {
+            if ($search != '') {
+                $maxPrize = $formData['maxPrize'];
+                $minPrize = $formData['minPrize'];
+                $allItems = Item::getAll(whereClause: "`prize` >= ? and `prize` <= ? and `title` like ?", whereParams: [$minPrize, $maxPrize, $search]);
+                $numOfRes = sizeof($allItems);
+            } else {
+                $maxPrize = $formData['maxPrize'];
+                $minPrize = $formData['minPrize'];
+                $allItems = Item::getAll(whereClause: "`prize` >= ? and `prize` <= ?", whereParams: [$minPrize, $maxPrize]);
+                $numOfRes = sizeof($allItems);
+            }
         } else if ($search != '') {
             $allItems = Item::getAll(whereClause: "`title` like ?", whereParams: [$search]);
+            $numOfRes = sizeof($allItems);
+        } else if ($maxPrize != '' && $minPrize != '') {
+            $allItems = Item::getAll(whereClause: "`prize` >= ? and `prize` <= ?", whereParams: [$minPrize, $maxPrize]);
             $numOfRes = sizeof($allItems);
         } else {
             if ($category != '') {
@@ -52,6 +74,8 @@ class AllPrintsController extends AControllerBase
         }
         return $this->html(
             [
+                'maxPrize' => $maxPrize,
+                'minPrize' => $minPrize,
                 'category' => $category,
                 'numOfRes' => $numOfRes,
                 'search' => $search,
