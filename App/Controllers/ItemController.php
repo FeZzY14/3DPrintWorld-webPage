@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
 use App\Models\Item;
+use App\Models\Review;
 
 class ItemController extends AControllerBase
 {
@@ -26,5 +27,15 @@ class ItemController extends AControllerBase
                 'item' => $item
             ]
         );
+    }
+
+    public function loadReviews(): Response
+    {
+        $id = $this->request()->getValue('id');
+        $offset = $this->request()->getValue('offset');
+        $length = $this->request()->getValue('length');
+        $reviews = Review::getAll('item_id like ?',[$id]);
+        $reviews = array_slice($reviews, $offset, $length);
+        return $this->json($reviews);
     }
 }

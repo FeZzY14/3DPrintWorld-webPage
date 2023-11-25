@@ -1,0 +1,89 @@
+.img-fluid {
+    max-height: 500px;
+}
+
+.item-listing {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.item-page {
+    border-radius: 8px 8px 8px 8px;
+}
+.selects{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.form-select {
+    background-color: #5c9ead;
+    color: white;
+    box-shadow: none !important;
+}
+
+.option:hover {
+    background-color: #e39774;
+}
+
+.colorExample {
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.prize {
+    font-weight: bold;
+    font-size: clamp(2rem, 6vw, 4rem);
+    text-align: right;
+    color: #326273;
+    padding-bottom: 30px;
+}
+
+.image {
+    max-width: 600px;
+}
+.scrollspy-example {
+    height: 700px;
+    overflow-y: scroll;
+}
+.reviews {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: #e39774;
+}
+.star {
+    color: #e39774;
+    font-size: 30px;
+    text-decoration: none;
+    font-style: normal;
+}
+.pagination>li>a, .pagination>li>span {
+    margin: 0 5px;
+}
+
+.pagination>li>a:hover, .pagination>li>span{
+    background-color: #e39774;
+    transform: scale(1.10);
+}
+
+.pagination {
+    padding-top: 20px;
+}
+
+.page-link {
+    color: black;
+    transition: 0.4s;
+}
+
+.page-link:hover {
+    color: white;
+}
+.card-img {
+    max-width: 800px;
+}
+.add-review {
+    background-color: #5c9ead;
+    color: white;
+    transition: 0.4s;
+}
+.add-review:hover {
+    background-color: #1e84a2;
+    color: white;
+    transform: scale(1.10);
+}

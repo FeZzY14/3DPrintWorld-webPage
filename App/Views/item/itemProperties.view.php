@@ -4,14 +4,21 @@
 /** @var App\Core\LinkGenerator $link */
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="public/css/itemPropCSS3.css">
+<link rel="stylesheet" href="public/css/itemPropCSS2.css">
 <link rel="stylesheet" href="public/css/itemCSS.css">
+<script src="public\js\colorExampleScript.js">
+</script>
+<script>
+    let id = <?php echo $data['item']->getId() ?>;
+</script>
+<script src="public\js\showMoreReviewsScript.js">
+</script>
 <div class="container item-listing">
     <div class="row">
-        <div class="col">
+        <div class="col-md-6">
             <img class="img-fluid" alt="product image" src="<?= $data['item']->getPicture() ?>">
         </div>
-        <div class="col">
+        <div class="col-md-6">
             <div class="container">
                 <div class="row">
                     <div class="col>">
@@ -25,8 +32,9 @@
                 </div>
                 <div class="row selects" id="selects">
                     <div class="col">
-                        <div onmouseenter="changeColor(this)">
-                            <select  class="form-select" aria-label="Default select example">
+                        <div>
+                            <select onchange="changeColor(this)" class="form-select"
+                                    aria-label="Default select example">
                                 <option class="option" value="Color" selected>Color</option>
                                 <option data-descr="color example" class="option" value="#1e1b1b">Black</option>
                                 <option data-descr="color example" class="option" value="#d2d0d0">White</option>
@@ -61,24 +69,41 @@
                 </div>
                 <div class="row">
                     <div class="col>">
+                        <h1 class="prize">
+                            <?= $data['item']->getPrize() ?>$
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col>">
                         <a href="http://www.bing.com" class="card-button item-page">add to cart</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function changeColor(wrapDiv) {
-            var innerSelect = wrapDiv.children[0];
-            var selectedOption = innerSelect.options[innerSelect.selectedIndex];
-            colorExample.innerHTML = selectedOption.getAttribute('data-descr');
-            colorExample.style.backgroundColor = selectedOption.value;
-            if (colorExample.innerHTML !== '' || colorExample.innerHTML === 'Color') {
-                selects.style.paddingBottom = "6px";
-            } else {
-                colorExample.style.backgroundColor = "white";
-                selects.style.paddingBottom = "30px";
-            }
-        }
-    </script>
+    <div class="row">
+        <div class="col>">
+            <div class="reviews">
+                <h2>Reviews</h2>
+                <button type="button" class="btn add-review">Add review</button>
+            </div>
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
+                 data-bs-smooth-scroll="true"
+                 class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0" id="reviews">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link"
+                               onclick="loadMoreReviews()"
+                               aria-label="Load-more"
+                               id="loadMoreButton">
+                                <span aria-hidden="true">&laquo; Load more &raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
