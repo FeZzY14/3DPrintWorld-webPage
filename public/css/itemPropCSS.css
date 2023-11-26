@@ -28,9 +28,9 @@
     border-radius: 5px;
 }
 .prize {
+    text-align: right;
     font-weight: bold;
     font-size: clamp(2rem, 6vw, 4rem);
-    text-align: right;
     color: #326273;
     padding-bottom: 30px;
 }
@@ -86,4 +86,11 @@
     background-color: #1e84a2;
     color: white;
     transform: scale(1.10);
+}
+.ratingAll {
+    text-align: right;
+    color: #e39774;
+}
+.ratingAll:before {
+    opacity: 1 !important;
 }

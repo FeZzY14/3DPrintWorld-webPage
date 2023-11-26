@@ -1,9 +1,9 @@
 <?php
 
 /** @var string $contentHTML */
-/** @var \App\Core\IAuthenticator $auth */
-/** @var \App\Core\LinkGenerator $link */
-/** @var \App\Core\Router $router */
+/** @var App\Core\IAuthenticator $auth */
+/** @var App\Core\LinkGenerator $link */
+/** @var App\Core\Router $router */
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -2,16 +2,18 @@
 /** @var Array $data */
 /** @var App\Models\Item $item */
 /** @var App\Core\LinkGenerator $link */
+/** @var App\Core\IAuthenticator $auth */
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="public/css/itemPropCSS2.css">
+<link rel="stylesheet" href="public/css/itemPropCSS.css">
 <link rel="stylesheet" href="public/css/itemCSS.css">
+<link rel="stylesheet" href="public/css/reviewFormCSS2.css">
 <script src="public\js\colorExampleScript.js">
 </script>
 <script>
+    let currUser = "<?php echo $auth->isLogged() ? $auth->getLoggedUserName() : '' ?>";
+
     let id = <?php echo $data['item']->getId() ?>;
-</script>
-<script src="public\js\showMoreReviewsScript.js">
 </script>
 <div class="container item-listing">
     <div class="row">
@@ -68,7 +70,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col>">
+                    <div class="col">
+                        <h3 class="ratingAll">
+                            ☆<?= $data['rating']?>
+                        </h3>
                         <h1 class="prize">
                             <?= $data['item']->getPrize() ?>$
                         </h1>
@@ -86,7 +91,46 @@
         <div class="col>">
             <div class="reviews">
                 <h2>Reviews</h2>
-                <button type="button" class="btn add-review">Add review</button>
+                <?php if ($auth->isLogged()) { ?>
+                    <button onclick="document.getElementById('review-form').classList.toggle('hide')" type="button"
+                            class="btn add-review" id="add-review">Add review
+                    </button>
+                    <div class="col-lg-12 login-form" id="review-form">
+                        <div class="col-lg-12 login-form">
+                            <form class="form-signin" method="dialog"
+                                  action="document.getElementById('review-form').classList.toggle('hide')">
+                                <div class="form-group">
+                                    <div class="rating">
+                                        <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                        <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                                        <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                                        <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                        <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">TEXT</label>
+                                    <input type="text" class="form-control" name="text" id="text"
+                                           required autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">IMAGE(URL)</label>
+                                    <input type="url" class="form-control" name="image" id="image">
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6 login-btm login-text">
+                                        <?= @$data['message'] ?>
+                                    </div>
+                                    <div class="col-lg-6 login-btm login-button">
+                                        <button value="Toggle" type="submit" class="btn btn-outline-primary"
+                                                name="submit" onclick="addReviewForm()">ADD
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
             <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
                  data-bs-smooth-scroll="true"
@@ -106,4 +150,8 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('review-form').classList.add('hide');
+    </script>
+    <script src="public\js\showMoreReviewsScript2.js"></script>
 </div>

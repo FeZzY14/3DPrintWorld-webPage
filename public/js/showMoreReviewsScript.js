@@ -75,6 +75,7 @@ function noReviews() {
     newReview.classList.add("card");
     newReview.classList.add("w-auto");
     newReview.classList.add("p-3");
+    newReview.id = "no-reviews";
 
     let cardBody = document.createElement("div")
     cardBody.classList.add("card-body");
