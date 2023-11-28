@@ -41,19 +41,26 @@ function createNewCard(data) {
     starLogo.classList.add("bi-star-fill");
     starLogo.classList.add("star");
     starLogo.innerText = data.stars;
+    starLogo.id = `reviewRating${data.id}`
     cardBody.appendChild(starLogo);
 
     let text = document.createElement("p");
+    text.id = `reviewText${data.id}`
     text.innerText = data.text;
     cardBody.appendChild(text);
 
-    if (data.image !== null) {
-        let image = document.createElement("img");
-        image.classList.add("card-img");
-        image.classList.add("text-center");
+    let image = document.createElement("img");
+    image.classList.add("card-img");
+    image.classList.add("text-center");
+    image.id = `reviewImage${data.id}`
+    image.alt = "review-image"
+    cardBody.appendChild(image);
+
+    if (data.image === null) {
+        image.style.display = 'none';
+    } else {
+        image.style.display = 'block';
         image.src = data.image;
-        image.alt = "review-image"
-        cardBody.appendChild(image);
     }
 
     let user = document.createElement("p");
@@ -63,6 +70,7 @@ function createNewCard(data) {
 
     let date = document.createElement("p");
     date.classList.add("a");
+    date.id = `reviewDate${data.id}`
     date.innerText = "On: " + data.date;
     cardBody.appendChild(date);
 
@@ -80,7 +88,7 @@ function createNewCard(data) {
     modifyButt.classList.add("add-review");
     modifyButt.classList.add("remove");
     modifyButt.style.marginTop = "10px";
-    modifyButt.onclick = function () {modifyReview(data)};
+    modifyButt.onclick = function () {modifyReviewButton(data)};
     cardBody.appendChild(modifyButt);
 
     if (currUser === "") {
@@ -149,18 +157,118 @@ function addReviewForm() {
     request.send();
 }
 
-function modifyReview(data) {
-    document.getElementById('review-form').classList.toggle('hide');
+function modifyReviewButton(data) {
+    let addReviewButt = document.getElementById("add-review");
+    addReviewButt.style.display = "none";
+    let reviewForm = document.getElementById('review-form');
+    if (reviewForm.classList.contains('hide')) {
+        document.getElementById('review-form').classList.toggle('hide');
+    }
     document.getElementById("add-review").focus();
     let text = document.getElementById("text");
-    text.value = data.text;
+    text.value = document.getElementById(`reviewText${data.id}`).innerText;
     let image = document.getElementById("image");
-    image.value = data.image;
+    if (document.getElementById(`reviewImage${data.id}`).src.includes("localhost")) {
+        image.value = "";
+    } else {
+        image.value = document.getElementById(`reviewImage${data.id}`).src;
+    }
+    document.getElementById("reviewButton").innerText = "modify";
+    document.getElementById("reviewButton").style.marginBottom = "10px";
+
+    document.getElementById(document.getElementById(`reviewRating${data.id}`).innerText).checked = true;
+    /*
+    switch (data.stars) {
+        case 1 :   document.getElementById(document.getElementById(`reviewRating${data.id}`)).checked = true;break;
+        case 2 :   document.getElementById("2").checked = true;break;
+        case 3 :   document.getElementById("3").checked = true;break;
+        case 4 :   document.getElementById("4").checked = true;break;
+        case 5 :   document.getElementById("5").checked = true;break;
+        /*
+
+    }
+    */
+
+    let cancelButt = document.getElementById("CancelReviewButton");
+    cancelButt.style.display = "block";
+
+    let addButton = document.getElementById("reviewButton");
+
+    addButton.onclick = function () {modifyReview(data.id)};
+
+
 }
 function deleteReview(data) {
-    //let url = `http://localhost/?id=${id}?reviewId=${data.id}&c=item&a=deleteReviews`;
-    //location.replace(url);
-    console.log(`pipi${data.id}`);
+    let url = `http://localhost/?id=${id}&reviewId=${data.id}&c=item&a=deleteReview`;
+    location.replace(url);
+}
+
+function addReviewButton() {
+    let reviewForm = document.getElementById('review-form');
+    document.getElementById('review-form').classList.toggle('hide');
+    let cancelButt = document.getElementById("CancelReviewButton");
+    cancelButt.style.display = "none";
+}
+
+function cleanReviewForm() {
+    document.getElementById('review-form').classList.toggle('hide');
+    let addReviewButt = document.getElementById("add-review");
+    addReviewButt.style.display = "block";
+
+    document.getElementById("text").value = "";
+    document.getElementById("image").value = "";
+    let addButton = document.getElementById("reviewButton");
+    addButton.innerText = "add";
+    addButton.onclick = function () {addReviewForm()};
+    document.getElementById("1").checked = false;
+    document.getElementById("2").checked = false;
+    document.getElementById("3").checked = false;
+    document.getElementById("4").checked = false;
+    document.getElementById("5").checked = false;
+}
+
+function modifyReview(id) {
+    let newText = document.getElementById("text").value;
+    let newImage = document.getElementById("image").value;
+    let stars = document.querySelectorAll('input[name="rating"]');
+    let selectedRating;
+    for (const star of stars) {
+        if (star.checked) {
+            selectedRating = star.value;
+            break;
+        }
+    }
+    console.log(id);
+    let url = `http://localhost/index.php?id=${id}&text=${newText}&image=${newImage}&rating=${selectedRating}&c=item&a=modifyReview`;
+    let request = new XMLHttpRequest();
+    request.onload = function () {
+        let data = JSON.parse(request.responseText);
+        console.log(data);
+        cleanReviewForm();
+        let text = document.getElementById(`reviewText${data.id}`);
+        text.innerText = data.text;
+        let image = document.getElementById(`reviewImage${data.id}`);
+        if (data.image !== null) {
+            image.style.display = 'block';
+            image.src = data.image;
+        } else {
+            image.style.display = 'none';
+            image.setAttribute('src', '');
+        }
+        let rating = document.getElementById(`reviewRating${data.id}`);
+        rating.innerText = data.stars;
+        let date = document.getElementById(`reviewDate${data.id}`)
+        date.innerText = "On: " + data.date;
+        /*for (let i = 0; i < data.length; i++) {
+            createNewCard(data[i]);
+            let reviews = document.getElementById("reviews");
+            reviews.insertBefore(createNewCard(data[i]), reviews.firstElementChild);
+            offset++;
+        }*/
+    };
+    request.open("GET", url)
+    request.send();
+    //cleanReviewForm();
 }
 
 

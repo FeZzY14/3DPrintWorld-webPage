@@ -74,4 +74,42 @@ class ItemController extends AControllerBase
         $reviews = array_slice($reviews, (sizeof($reviews) - 1), 1);
         return $this->json($reviews);
     }
+
+    public function modifyReview(): Response
+    {
+        if (!$this->app->getAuth()->isLogged()) {
+            throw new HTTPException(403);
+        }
+        $reviewId = $this->request()->getValue('id');
+        $newText = $this->request()->getValue('text');
+        $newImage = $this->request()->getValue('image');
+        $newRating = $this->request()->getValue('rating');
+
+        $review = Review::getOne($reviewId);
+        $review->setText($newText);
+        if ($newImage != "") {
+            $review->setImage($newImage);
+        } else {
+            $review->setImage(NULL);
+        }
+        $review->setStars($newRating);
+        $review->setDate(date("Y-m-d H:i:s"));
+        $review->save();
+
+        return $this->json($review);
+        //return $this->redirect($this->url("item.itemProperties",['id' => $itemId]));
+    }
+
+    public function deleteReview(): Response
+    {
+        if (!$this->app->getAuth()->isLogged()) {
+            throw new HTTPException(403);
+        }
+        $itemId = $this->request()->getValue('id');
+        $reviewId = $this->request()->getValue('reviewId');
+        $review = Review::getOne($reviewId);
+        $review->delete();
+
+        return $this->redirect($this->url("item.itemProperties",['id' => $itemId]));
+    }
 }

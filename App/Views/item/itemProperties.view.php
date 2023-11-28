@@ -5,7 +5,7 @@
 /** @var App\Core\IAuthenticator $auth */
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="public/css/itemPropCSS.css">
+<link rel="stylesheet" href="public/css/itemPropCSS3.css">
 <link rel="stylesheet" href="public/css/itemCSS.css">
 <link rel="stylesheet" href="public/css/reviewFormCSS2.css">
 <script src="public\js\colorExampleScript.js">
@@ -71,9 +71,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h3 class="ratingAll">
-                            ☆<?= $data['rating']?>
-                        </h3>
+                        <p class="bi bi-star-fill ratingAll"><?= $data['rating']?></p>
                         <h1 class="prize">
                             <?= $data['item']->getPrize() ?>$
                         </h1>
@@ -92,7 +90,7 @@
             <div class="reviews">
                 <h2>Reviews</h2>
                 <?php if ($auth->isLogged()) { ?>
-                    <button onclick="document.getElementById('review-form').classList.toggle('hide')" type="button"
+                    <button onclick="addReviewButton()" type="button"
                             class="btn add-review" id="add-review">Add review
                     </button>
                     <div class="col-lg-12 login-form" id="review-form">
@@ -121,9 +119,12 @@
                                     <div class="col-lg-6 login-btm login-text">
                                         <?= @$data['message'] ?>
                                     </div>
-                                    <div class="col-lg-6 login-btm login-button">
+                                    <div class="col-lg-6 login-btm login-button" id="add-button-div">
                                         <button value="Toggle" type="submit" class="btn btn-outline-primary"
-                                                name="submit" onclick="addReviewForm()">ADD
+                                                name="submit" onclick="addReviewForm()" id="reviewButton">add
+                                        </button>
+                                        <button value="Toggle" type="reset" class="btn btn-outline-primary"
+                                                onclick="cleanReviewForm()" id="CancelReviewButton">cancel
                                         </button>
                                     </div>
                                 </div>
@@ -153,5 +154,7 @@
     <script>
         document.getElementById('review-form').classList.add('hide');
     </script>
-    <script src="public\js\showMoreReviewsScript2.js"></script>
+    <script src="public\js\reviewsScript2.js"></script>
+    <script>
+    </script>
 </div>
