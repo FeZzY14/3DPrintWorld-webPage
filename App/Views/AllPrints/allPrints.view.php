@@ -9,6 +9,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="public/css/allItemsCSS.css">
 <link rel="stylesheet" href="public/css/itemCSS.css">
+<?php if ($data['showMess'] == 1) { ?>
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-file-plus"></i>
+                You have successfully added new print.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+<?php } else if ($data['showMess'] == 2) { ?>
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-file-minus"></i>
+                The print was successfully removed.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+<?php } else if ($data['showMess'] == 3) { ?>
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-plus-square"></i>
+                The print was successfully modified.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 <div class="filters">
     <div class="search-bar">
         <form class="d-flex" role="search" method="post"
@@ -34,11 +65,19 @@
         </div>
     </form>
 </div>
+<?php if ($auth->isAdmin()) { ?>
+    <div class="add-button-div">
+        <a href="<?= $link->url("allPrints.printForm") ?>">
+            <button class="btn btn-outline-success search-button add-button">Add print
+            </button>
+        </a>
+    </div>
+<?php } ?>
 
 <?php if ($data['search'] != '' && $data['minPrize'] != '' && $data['maxPrize']) { ?>
     <div class="result-text">
         <?= $data['numOfRes'] ?> results for search: '<?= trim($data['search'], '%') ?>' and
-            for min prize <?= $data['minPrize'] ?>$ and max prize <?= $data['maxPrize']?>$<br>
+        for min prize <?= $data['minPrize'] ?>$ and max prize <?= $data['maxPrize'] ?>$<br>
         <a class="remove-search" href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">remove filters</a>
     </div>
 <?php } else if ($data['category'] != '') { ?>

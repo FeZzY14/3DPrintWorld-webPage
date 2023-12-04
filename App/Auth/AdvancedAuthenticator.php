@@ -92,4 +92,20 @@ class AdvancedAuthenticator implements IAuthenticator
     {
         return $_SESSION['user'];
     }
+
+    public function isAdmin(): bool
+    {
+        if (!$this->isLogged()) {
+            return false;
+        } else {
+            $login = $this->getLoggedUserName();
+            $user = User::getAll('`login` like ?', [$login]);
+            if ($user[0]->getRole() == 'admin') {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
 }

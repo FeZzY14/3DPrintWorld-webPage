@@ -10,6 +10,18 @@ class User extends Model
     Protected string $login;
     Protected string $password;
     Protected string $email;
+    Protected ?string $role;
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(?string $role): void
+    {
+        $this->role = $role;
+    }
+
 
     public function getId(): ?int
     {

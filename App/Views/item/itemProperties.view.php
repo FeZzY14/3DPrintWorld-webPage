@@ -5,7 +5,7 @@
 /** @var App\Core\IAuthenticator $auth */
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="public/css/itemPropCSS3.css">
+<link rel="stylesheet" href="public/css/itemPropCSS.css">
 <link rel="stylesheet" href="public/css/itemCSS.css">
 <link rel="stylesheet" href="public/css/reviewFormCSS2.css">
 <script src="public\js\colorExampleScript.js">
@@ -71,17 +71,37 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p class="bi bi-star-fill ratingAll"><?= $data['rating']?></p>
+                        <p class="bi bi-star-fill ratingAll"><?= $data['rating'] ?></p>
                         <h1 class="prize">
                             <?= $data['item']->getPrize() ?>$
                         </h1>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col>">
+                    <div class="col">
                         <a href="http://www.bing.com" class="card-button item-page">add to cart</a>
                     </div>
                 </div>
+                <?php if ($auth->isAdmin()) { ?>
+                    <div class="row">
+                        <div class="col">
+                            <div class="add-button-div">
+                                <a href="<?= $link->url("allPrints.printForm", ['id' => $data['item']->getId()]) ?>">
+                                    <button class="btn btn-outline-success search-button add-button">Modify
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="add-button-div">
+                                <a href="<?= $link->url("allPrints.removePrint", ['id' => $data['item']->getId()]) ?>">
+                                    <button class="btn btn-outline-success search-button add-button">Remove
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>

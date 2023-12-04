@@ -52,7 +52,7 @@ class AuthController extends AControllerBase
         if (isset($formData['submit'])) {
             $user = new User();
             if ($formData['password'] != $formData['password2']) {
-                $data = ['message' => 'password does not - match please repeat your password correctly',
+                $data = ['message' => 'password does not match - please repeat your password correctly',
                     'login' => $formData['login'], 'email' => $formData['email']];
                 return $this->html($data);
             }

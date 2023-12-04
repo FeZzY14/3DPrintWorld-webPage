@@ -90,8 +90,30 @@
 .ratingAll {
     text-align: right;
     color: #e39774;
-    font-size: 15px;
+    font-size: 35px;
 }
 .ratingAll:before {
     opacity: 1 !important;
+}
+
+.add-button-div {
+    padding-top: 40px;
+    text-align: center;
+}
+
+.add-button {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    font-size: 25px;
+    horiz-align: center;
+    border-color: #e39774;
+    background-color: #e39774;
+    color: #326273;
+    width: 294px;
+}
+
+.add-button:hover {
+    background-color: #e17743;
+    border-color: #e39774;
+    color: #326273;
 }

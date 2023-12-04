@@ -7,7 +7,7 @@
 /** @var App\Core\LinkGenerator $link */
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="public/css/home2CSS.css">
+<link rel="stylesheet" href="public/css/homeCSS.css">
 <link rel="stylesheet" href="public/css/itemCSS.css">
 <div class="home-logo">
     <img class="img-fluid logo_home" src="resources/logo.png" alt="logo image">
@@ -32,7 +32,7 @@
             <?php } else if ($data['showMess'] == 3){ ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <i class="bi bi-r-circle"></i>
-                    You have successfully registered.
+                    You have successfully registered. You can log in <a class="login-link" href="<?=$link->url("auth.login") ?>">here</a>.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php } ?>

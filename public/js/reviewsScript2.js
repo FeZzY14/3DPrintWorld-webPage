@@ -177,17 +177,6 @@ function modifyReviewButton(data) {
     document.getElementById("reviewButton").style.marginBottom = "10px";
 
     document.getElementById(document.getElementById(`reviewRating${data.id}`).innerText).checked = true;
-    /*
-    switch (data.stars) {
-        case 1 :   document.getElementById(document.getElementById(`reviewRating${data.id}`)).checked = true;break;
-        case 2 :   document.getElementById("2").checked = true;break;
-        case 3 :   document.getElementById("3").checked = true;break;
-        case 4 :   document.getElementById("4").checked = true;break;
-        case 5 :   document.getElementById("5").checked = true;break;
-        /*
-
-    }
-    */
 
     let cancelButt = document.getElementById("CancelReviewButton");
     cancelButt.style.display = "block";
@@ -243,7 +232,6 @@ function modifyReview(id) {
     let request = new XMLHttpRequest();
     request.onload = function () {
         let data = JSON.parse(request.responseText);
-        console.log(data);
         cleanReviewForm();
         let text = document.getElementById(`reviewText${data.id}`);
         text.innerText = data.text;
@@ -259,16 +247,9 @@ function modifyReview(id) {
         rating.innerText = data.stars;
         let date = document.getElementById(`reviewDate${data.id}`)
         date.innerText = "On: " + data.date;
-        /*for (let i = 0; i < data.length; i++) {
-            createNewCard(data[i]);
-            let reviews = document.getElementById("reviews");
-            reviews.insertBefore(createNewCard(data[i]), reviews.firstElementChild);
-            offset++;
-        }*/
     };
     request.open("GET", url)
     request.send();
-    //cleanReviewForm();
 }
 
 

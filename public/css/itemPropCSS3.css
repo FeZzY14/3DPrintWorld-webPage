@@ -95,3 +95,15 @@
 .ratingAll:before {
     opacity: 1 !important;
 }
+
+.add-button-div {
+    padding-bottom: 30px;
+    padding-left: 20px;
+}
+
+.add-button {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    font-size: 25px;
+    horiz-align: center;
+}

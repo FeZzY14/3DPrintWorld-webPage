@@ -36,11 +36,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="<?php if (str_ends_with($_SERVER['REQUEST_URI'], "a=allPrints")) { ?>nav-link active<?php } else { ?>nav-link<?php } ?>"
-                       href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">All prints</a>
+                       href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">All Prints</a>
                 </li>
                 <li class="nav-item">
                     <a class="<?php if ($_SERVER['REQUEST_URI'] == "/?c=home&a=customPrint") { ?>nav-link active<?php } else { ?>nav-link<?php } ?>"
-                       href="<?= $link->url("home.customPrint") ?>">custom print</a>
+                       href="<?= $link->url("home.customPrint") ?>">Custom Print</a>
                 </li>
                 <li class="nav-item">
                     <a class="<?php if ($_SERVER['REQUEST_URI'] == "/?c=home&a=about") { ?>nav-link active<?php } else { ?>nav-link<?php } ?>"
