@@ -27,6 +27,7 @@ class AllPrintsController extends AControllerBase
         $showMess = $this->request()->getValue('showMess');
         $numOfRes = 0;
 
+
         if (isset($formData['searchSubmit'])) {
             if ($maxPrize != '' && $minPrize != '') {
                 $search = '%' . $formData['search'] . '%';
