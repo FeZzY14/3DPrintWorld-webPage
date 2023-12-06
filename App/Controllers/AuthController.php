@@ -56,6 +56,11 @@ class AuthController extends AControllerBase
                     'login' => $formData['login'], 'email' => $formData['email']];
                 return $this->html($data);
             }
+            if (strlen($formData['password']) <= 8) {
+                $data = ['message' => 'password must have more then 8 characters - please repeat your password correctly',
+                    'login' => $formData['login'], 'email' => $formData['email']];
+                return $this->html($data);
+            }
             $allUsers = User::getAll();
             foreach ($allUsers as $existsUser) {
                 if ($existsUser->getLogin() == $formData['login']) {
