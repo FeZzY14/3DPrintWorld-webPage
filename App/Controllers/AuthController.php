@@ -64,7 +64,7 @@ class AuthController extends AControllerBase
             $allUsers = User::getAll();
             foreach ($allUsers as $existsUser) {
                 if ($existsUser->getLogin() == $formData['login']) {
-                    $data = ['message' => 'login already exist - please select different login', 'email' => $formData['email']];
+                    $data = ['message' => 'login already exist - please select different login', 'email' => $formData['email'], 'login' => $formData['login']];
                     return $this->html($data);
                 }
             }
