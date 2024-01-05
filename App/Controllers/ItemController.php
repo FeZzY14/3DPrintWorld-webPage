@@ -76,9 +76,9 @@ class ItemController extends AControllerBase
 
     public function modifyReview(): Response
     {
-        if (!$this->app->getAuth()->isLogged()) {
-            throw new HTTPException(403);
-        }
+        //if (!$this->app->getAuth()->isLogged()) {
+            //throw new HTTPException(403);
+       // }
         $reviewId = $this->request()->getValue('id');
         $newText = $this->request()->getValue('text');
         $newImage = $this->request()->getValue('image');

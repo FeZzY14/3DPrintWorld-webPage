@@ -216,7 +216,7 @@
 <div class="container">
     <div class="row">
         <?php
-        $rowNum = 1;
+        $rowNum = 0;
         foreach ($data['items'] as $item) {
             $rowNum++; ?>
             <div class="col-md-3">
@@ -224,7 +224,7 @@
                     <a class="item-page-link" href="<?= $link->url('item.itemProperties', ['id' => $item->getId()]) ?>">
                         <img class="card-img-top" alt="product image" src="<?= $item->getPicture() ?>">
                         <div class="card-body">
-                            <h3 class="card-title"><?= $item->getTitle() ?></h3>
+                            <h3 class="card-title" id="card-title<?=$rowNum?>"><?= $item->getTitle() ?></h3>
                             <p class="card-text">
                                 <?= $item->getText() ?>
                             </p>
