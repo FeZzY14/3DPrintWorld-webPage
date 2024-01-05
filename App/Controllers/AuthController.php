@@ -8,6 +8,7 @@ use App\Core\Responses\Response;
 use App\Core\Responses\ViewResponse;
 use App\Models\User;
 use App\Helpers\AuthMessage;
+use App\Models\UserItem;
 
 /**
  * Class AuthController
@@ -88,5 +89,19 @@ class AuthController extends AControllerBase
         $this->app->getAuth()->logout();
         $showMess = 2;
         return $this->redirect($this->url("home.index",['showMess' => $showMess]));
+    }
+
+    public function profile(): Response
+    {
+        $userItems = UserItem::getAll('userId like ?', whereParams: [$this->app->getAuth()->getLoggedUserId()],orderBy:'`id` desc');
+        return $this->html(['items' => $userItems]);
+    }
+
+    public function removeUserItem(): Response
+    {
+        $id = $this->request()->getValue('id');
+        $deleteItem = UserItem::getOne($id);
+        $deleteItem->delete();
+        return $this->redirect($this->url("profile"));
     }
 }

@@ -9,7 +9,7 @@ function changeColor(wrapDiv) {
     } else {
         colorExample.style.backgroundColor = selectedOption.value;
     }
-    if (colorExample.innerHTML !== '' || colorExample.innerHTML === 'Color') {
+    if (colorExample.innerHTML !== '' || colorExample.innerHTML === '#e39774') {
         document.getElementById('selects').style.paddingBottom = "6px";
     } else {
         colorExample.style.backgroundColor = "white";

@@ -39,8 +39,8 @@
                        href="<?= $link->url("allPrints.allPrints", ['page' => 1]) ?>">All Prints</a>
                 </li>
                 <li class="nav-item">
-                    <a class="<?php if ($_SERVER['REQUEST_URI'] == "/?c=home&a=customPrint") { ?>nav-link active<?php } else { ?>nav-link<?php } ?>"
-                       href="<?= $link->url("home.customPrint") ?>">Custom Print</a>
+                    <a class="<?php if ($_SERVER['REQUEST_URI'] == "/?c=customPrint&a=customPrint") { ?>nav-link active<?php } else { ?>nav-link<?php } ?>"
+                       href="<?= $link->url("customPrint.customPrint") ?>">Custom Print</a>
                 </li>
                 <li class="nav-item">
                     <a class="<?php if ($_SERVER['REQUEST_URI'] == "/?c=home&a=about") { ?>nav-link active<?php } else { ?>nav-link<?php } ?>"
@@ -50,7 +50,7 @@
             <ul class="navbar-nav ms-auto">
                 <?php if ($auth->isLogged()) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $link->url("auth.login") ?>">Profile</a>
+                        <a class="nav-link" href="<?= $link->url("auth.profile") ?>">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link register" href="<?= $link->url("auth.logout") ?>">logout</a>

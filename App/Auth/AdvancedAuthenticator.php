@@ -86,11 +86,18 @@ class AdvancedAuthenticator implements IAuthenticator
 
     /**
      * Return the id of the logged-in user
-     * @return mixed
+     * @return int
+     * @throws \Exception
      */
-    public function getLoggedUserId(): mixed
+    public function getLoggedUserId(): int
     {
-        return $_SESSION['user'];
+        if (!$this->isLogged()) {
+            return -1;
+        } else {
+            $login = $this->getLoggedUserName();
+            $user = User::getAll('`login` like ?', [$login]);
+            return $user[0]->getId();
+        }
     }
 
     public function isAdmin(): bool
