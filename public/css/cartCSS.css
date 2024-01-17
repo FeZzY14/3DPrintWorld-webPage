@@ -1,0 +1,28 @@
+.cart-image {
+    width: 120px;
+}
+
+.quantity {
+    width: 50px;
+}
+
+.trash-button {
+    background-color: white;
+    color: #e39774;
+    border: 0;
+}
+
+.trash-button:hover {
+    background-color: #e39774;
+    border: 0;
+}
+
+.checkout-button {
+    background-color: #e39774;
+    border: 0;
+}
+
+.checkout-button:hover {
+    background-color: #e17743;
+    border: 0;
+}

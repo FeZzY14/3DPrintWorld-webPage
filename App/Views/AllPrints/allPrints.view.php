@@ -8,7 +8,9 @@
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="public/css/allItemsCSS.css">
-<link rel="stylesheet" href="public/css/itemCSS.css">
+<link rel="stylesheet" href="public/css/itemCSS3.css">
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="public/js/cartScript3.js"></script>
 <?php if ($data['showMess'] == 1) { ?>
     <div class="container">
         <div class="row">
@@ -231,7 +233,22 @@
                             <h3 class="card-prize"><?= strval($item->getPrize()) ?>$</h3>
                         </div>
                     </a>
-                    <a href="http://www.bing.com" class="card-button">add to cart</a>
+                    <?php if ($auth->isLogged()) { ?>
+                        <button data-bs-container="body" data-bs-toggle="popover"
+                                data-bs-trigger="focus"
+                                data-bs-custom-class="addCart-popover"
+                                data-bs-placement="top" data-bs-content="Item was added to the cart"
+                                onclick="addToCart(<?=$item->getId()?>, true, null, null, null);addToOrder();"
+                                class="card-button">Add to cart</button>
+                    <?php } else { ?>
+                        <button href="#"
+                                data-bs-toggle="tooltip"
+                                data-bs-custom-class="login-tooltip"
+                                data-bs-html="true"
+                                data-bs-title="You must <b>login</b> to add thin item to cart"
+                                class="card-button">Add to cart
+                        </button>
+                    <?php } ?>
                 </div>
             </div>
         <?php } ?>
@@ -258,4 +275,10 @@
             </li>
         <?php } ?>
     </ul>
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 </nav>

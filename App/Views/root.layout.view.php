@@ -50,14 +50,14 @@
             <ul class="navbar-nav ms-auto">
                 <?php if ($auth->isLogged()) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $link->url("auth.profile") ?>">Profile</a>
+                        <a class="<?php if ($_SERVER['REQUEST_URI'] == "/?c=auth&a=profile") { ?>nav-link active<?php } else { ?>nav-link<?php } ?>" href="<?= $link->url("auth.profile") ?>">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link register" href="<?= $link->url("auth.logout") ?>">logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://www.google.com">
-                            <i class="bi bi-cart"></i>
+                        <a class="nav-link" href="<?= $link->url("cart.cart") ?>">
+                            <i id="menuCartIcon" class="bi bi-cart"></i>
                         </a>
                     </li>
                 <?php } else { ?>
@@ -68,7 +68,7 @@
                         <a class="nav-link register" href="<?= $link->url("auth.register") ?>">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://www.google.com">
+                        <a class="nav-link" href="<?= $link->url("auth.login") ?>">
                             <i class="bi bi-cart"></i>
                         </a>
                     </li>

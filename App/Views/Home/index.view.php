@@ -8,31 +8,34 @@
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="public/css/homeCSS.css">
-<link rel="stylesheet" href="public/css/itemCSS.css">
+<link rel="stylesheet" href="public/css/itemCSS3.css">
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="public/js/cartScript3.js"></script>
 <div class="home-logo">
     <img class="img-fluid logo_home" src="resources/logo.png" alt="logo image">
 </div>
 <div class="container">
     <div class="row">
         <div class="description">
-            <?php if ($data['showMess'] == 1)
-                 { ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <i class="bi bi-unlock"></i>
-                        You have successfully logged in as <strong><?= $auth->getLoggedUserName() ?></strong> have a great time
-                        here.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php } else if ($data['showMess'] == 2){ ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <i class="bi bi-lock"></i>
-                        You have successfully logged out.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-            <?php } else if ($data['showMess'] == 3){ ?>
+            <?php if ($data['showMess'] == 1) { ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-unlock"></i>
+                    You have successfully logged in as <strong><?= $auth->getLoggedUserName() ?></strong> have a great
+                    time
+                    here.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php } else if ($data['showMess'] == 2) { ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-lock"></i>
+                    You have successfully logged out.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php } else if ($data['showMess'] == 3) { ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <i class="bi bi-r-circle"></i>
-                    You have successfully registered. You can log in <a class="login-link" href="<?=$link->url("auth.login") ?>">here</a>.
+                    You have successfully registered. You can log in <a class="login-link"
+                                                                        href="<?= $link->url("auth.login") ?>">here</a>.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php } ?>
@@ -119,33 +122,68 @@
                             <h3 class="card-prize"><?= strval($item->getPrize()) ?>$</h3>
                         </div>
                     </a>
-                    <a href="http://www.bing.com" class="card-button">add to cart</a>
+                    <?php if ($auth->isLogged()) { ?>
+                        <button data-bs-container="body" data-bs-toggle="popover"
+                                data-bs-trigger="focus"
+                                data-bs-custom-class="addCart-popover"
+                                data-bs-placement="top" data-bs-content="Item was added to the cart"
+                                onclick="addToCart(<?=$item->getId()?>, true, null, null, null);addToOrder();"
+                                class="card-button">Add to cart</button>
+                    <?php } else { ?>
+                        <button href="#"
+                                data-bs-toggle="tooltip"
+                                data-bs-custom-class="login-tooltip"
+                                data-bs-html="true"
+                                data-bs-title="You must <b>login</b> to add thin item to cart"
+                                class="card-button">Add to cart
+                        </button>
+                    <?php } ?>
                 </div>
             </div>
         <?php } ?>
     </div>
-    <div class="container">
-        <div class="row">
-            <h2 class="item-type">Popular</h2>
-            <?php
-            foreach ($data['popular'] as $item) { ?>
-                <div class="col-md-4">
-                    <div class="card-sl">
-                        <a class="item-page-link"
-                           href="<?= $link->url('item.itemProperties', ['id' => $item->getId()]) ?>">
-                            <img class="card-img-top" alt="product image" src="<?= $item->getPicture() ?>">
-                            <div class="card-body">
-                                <h3 class="card-title"><?= $item->getTitle() ?></h3>
-                                <p class="card-text">
-                                    <?= $item->getText() ?>
-                                </p>
-                                <h3 class="card-prize"><?= strval($item->getPrize()) ?>$</h3>
-                            </div>
-                        </a>
-                        <a href="http://www.bing.com" class="card-button">add to cart</a>
-                    </div>
+
+    <div class="row">
+        <h2 class="item-type">Popular</h2>
+        <?php
+        foreach ($data['popular'] as $item) { ?>
+            <div class="col-md-4">
+                <div class="card-sl">
+                    <a class="item-page-link"
+                       href="<?= $link->url('item.itemProperties', ['id' => $item->getId()]) ?>">
+                        <img class="card-img-top" alt="product image" src="<?= $item->getPicture() ?>">
+                        <div class="card-body">
+                            <h3 class="card-title"><?= $item->getTitle() ?></h3>
+                            <p class="card-text">
+                                <?= $item->getText() ?>
+                            </p>
+                            <h3 class="card-prize"><?= strval($item->getPrize()) ?>$</h3>
+                        </div>
+                    </a>
+                    <?php if ($auth->isLogged()) { ?>
+                        <button data-bs-container="body" data-bs-toggle="popover"
+                                data-bs-trigger="focus"
+                                data-bs-custom-class="addCart-popover"
+                                data-bs-placement="top" data-bs-content="Item was added to the cart"
+                                onclick="addToCart(<?=$item->getId()?>, true, null, null, null);addToOrder();"
+                                class="card-button">Add to cart</button>
+                    <?php } else { ?>
+                        <button href="#"
+                                data-bs-toggle="tooltip"
+                                data-bs-custom-class="login-tooltip"
+                                data-bs-html="true"
+                                data-bs-title="You must <b>login</b> to add thin item to cart"
+                                class="card-button">Add to cart
+                        </button>
+                    <?php } ?>
                 </div>
-            <?php } ?>
-        </div>
+            </div>
+        <?php } ?>
     </div>
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 </div>

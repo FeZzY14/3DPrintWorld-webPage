@@ -6,8 +6,9 @@
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="public/css/itemPropCSS.css">
-<link rel="stylesheet" href="public/css/itemCSS.css">
+<link rel="stylesheet" href="public/css/itemCSS3.css">
 <link rel="stylesheet" href="public/css/reviewFormCSS2.css">
+<script src="public/js/cartScript3.js"></script>
 <script src="public\js\colorExampleScript.js">
 </script>
 <script>
@@ -33,9 +34,10 @@
                     </div>
                 </div>
                 <div class="row selects" id="selects">
+                    <label class="form-control-label">Select all options then you can add item to cart</label>
                     <div class="col">
                         <div>
-                            <select onchange="changeColor(this)" class="form-select"
+                            <select id="colorSelect" onchange="changeColor(this);onOptionChange();" class="form-select"
                                     aria-label="Default select example">
                                 <option class="option" value="Color" selected>Color</option>
                                 <option data-descr="color example" class="option" value="#1e1b1b">Black</option>
@@ -49,7 +51,8 @@
                         <div class="colorExample" id="colorExample"></div>
                     </div>
                     <div class="col">
-                        <select class="form-select" aria-label="Default select example">
+                        <select onchange="onOptionChange()" id="materialSelect" class="form-select"
+                                aria-label="Default select example">
                             <option selected>Material</option>
                             <option value="PLA">PLA</option>
                             <option value="PETG">PETG</option>
@@ -59,7 +62,8 @@
                         </select>
                     </div>
                     <div class="col">
-                        <select class="form-select" aria-label="Default select example">
+                        <select onchange="onOptionChange()" id="layerSelect" class="form-select"
+                                aria-label="Default select example">
                             <option selected>Layer height</option>
                             <option value="0.10">0.10</option>
                             <option value="0.12">0.12</option>
@@ -79,7 +83,27 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <a href="http://www.bing.com" class="card-button item-page">add to cart</a>
+                        <?php if ($auth->isLogged()) { ?>
+                            <button data-bs-container="body" data-bs-toggle="popover"
+                                    data-bs-trigger="focus" id="cartButton1"
+                                    data-bs-custom-class="addCart-popover"
+                                    data-bs-placement="top" data-bs-content="Item was added to the cart"
+                                    onclick="addToCart(<?= $data['item']->getId() ?>,
+                                            false,
+                                            document.getElementById('colorSelect').options[document.getElementById('colorSelect').selectedIndex].value,
+                                            document.getElementById('materialSelect').options[document.getElementById('materialSelect').selectedIndex].value,
+                                            document.getElementById('layerSelect').options[document.getElementById('layerSelect').selectedIndex].value);addToOrder();"
+                                    class="card-button">Add to cart
+                            </button>
+                        <?php } else { ?>
+                            <button href="#"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-custom-class="login-tooltip"
+                                    data-bs-html="true" id="cartButton0"
+                                    data-bs-title="You must <b>login</b> to add thin item to cart"
+                                    class="card-button">Add to cart
+                            </button>
+                        <?php } ?>
                     </div>
                 </div>
                 <?php if ($auth->isAdmin()) { ?>
@@ -172,7 +196,36 @@
         </div>
     </div>
     <script>
-        document.getElementById('review-form').classList.add('hide');
+
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        onOptionChange();
+
+        function onOptionChange() {
+            let addCart1 = document.getElementById("cartButton1");
+            let addCart0 = document.getElementById("cartButton0");
+            let colorSel = document.getElementById("colorSelect");
+            let materialSel = document.getElementById("materialSelect");
+            let layerSel = document.getElementById("layerSelect");
+
+            if (colorSel.selectedIndex !== 0 && materialSel.selectedIndex !== 0 && layerSel.selectedIndex !== 0) {
+                if (addCart1 !== null) {
+                    addCart1.style.display = 'block';
+                }
+                if (addCart0 !== null) {
+                    addCart0.style.display = 'block';
+                }
+            } else {
+                if (addCart1 !== null) {
+                    addCart1.style.display = 'none';
+                }
+                if (addCart0 !== null) {
+                    addCart0.style.display = 'none';
+                }
+            }
+        }
     </script>
     <script src="public\js\reviewsScript2.js"></script>
     <script>

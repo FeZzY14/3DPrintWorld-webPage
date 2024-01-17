@@ -1,0 +1,75 @@
+.col-md-4{
+    padding-bottom: 20px;
+}
+.card-sl{
+    font-family: 'Verdana', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: transform .3s;
+    text-decoration: none;
+
+}
+.col-md-3 {
+    padding-bottom: 20px;
+}
+.card-sl:hover {
+    transform: scale(1.05);
+}
+.item-page-link {
+    text-decoration: none;
+}
+.card-body {
+    padding: 15px;
+    height: auto;
+}
+.card-title {
+    color: #326273;
+    padding-bottom: 10px;
+    height: 100px;
+    overflow: hidden;
+    font-size: calc(1.5em + 0.1vw);
+}
+.card-text {
+    color: black;
+    overflow: hidden;
+    height: 100px;
+    vertical-align: center;
+}
+.card-prize {
+    color: #326273;
+}
+.card-button {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    border-radius: 0 0 8px 8px;
+    width: 100%;
+    background-color: #e39774;
+    color: #326273;
+    text-decoration: none;
+    font-size: 25px;
+    transition: background-color .5s;
+    border-width: 0;
+}
+.card-button:hover {
+    background-color: #e17743;
+}
+.card-img-top{
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+.login-tooltip {
+    --bs-tooltip-bg: #5c9ead;
+    --bs-tooltip-color: white;
+    --bs-tooltip-font-size: 28px;
+    --bs-tooltip-arrow-height: 20px;
+}
+
+.addCart-popover {
+    --bs-popover-body-bg: #5c9ead;
+    --bs-popover-body-color: white;
+    --bs-popover-body-font-size: 28px;
+    --bs-popover-arrow-height: 20px;
+}
