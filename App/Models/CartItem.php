@@ -14,6 +14,17 @@ class CartItem extends Model
     Protected ?string $material;
     Protected ?float $layerHeight;
     Protected ?float $prize;
+    Protected ?string $title;
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): void
+    {
+        $this->title = $title;
+    }
 
     public function getId(): int
     {

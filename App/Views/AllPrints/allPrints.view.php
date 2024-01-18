@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="public/css/allItemsCSS.css">
 <link rel="stylesheet" href="public/css/itemCSS3.css">
 <script src="js/bootstrap.bundle.min.js"></script>
-<script src="public/js/cartScript3.js"></script>
+<script src="public/js/cartScript.js"></script>
 <?php if ($data['showMess'] == 1) { ?>
     <div class="container">
         <div class="row">
@@ -238,7 +238,7 @@
                                 data-bs-trigger="focus"
                                 data-bs-custom-class="addCart-popover"
                                 data-bs-placement="top" data-bs-content="Item was added to the cart"
-                                onclick="addToCart(<?=$item->getId()?>, true, null, null, null);addToOrder();"
+                                onclick="addToCart(<?=$item->getId()?>, true, null, null, null, null, null);"
                                 class="card-button">Add to cart</button>
                     <?php } else { ?>
                         <button href="#"

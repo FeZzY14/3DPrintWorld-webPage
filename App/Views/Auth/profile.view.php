@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="public/css/itemPropCSS.css">
 <link rel="stylesheet" href="public/css/userItemCSS2.css">
 <link rel="stylesheet" href="public/css/customPrintCSS4.css">
+<link rel="stylesheet" href="public/css/itemCSS3.css">
+<script src="public/js/cartScript.js"></script>
 <script src="public\js\colorExampleScript.js"></script>
 <!--https://www.viewstl.com/plugin/#intro
 Viewstl Javscript plugin is licensed under the MIT License - Copyright (c) 2019 Viewstl.com-->
@@ -71,7 +73,22 @@ Viewstl Javscript plugin is licensed under the MIT License - Copyright (c) 2019 
                             </div>
                         </div>
                     </div>
-                    <a href="http://www.bing.com" class="card-button">add to cart</a>
+                    <?php if ($auth->isLogged()) { ?>
+                        <button data-bs-container="body" data-bs-toggle="popover"
+                                data-bs-trigger="focus"
+                                data-bs-custom-class="addCart-popover"
+                                data-bs-placement="top" data-bs-content="Item was added to the cart"
+                                onclick="addToCart(<?=$item->getId()?>, false, null, null, null, null, null);"
+                                class="card-button">Add to cart</button>
+                    <?php } else { ?>
+                        <button href="#"
+                                data-bs-toggle="tooltip"
+                                data-bs-custom-class="login-tooltip"
+                                data-bs-html="true"
+                                data-bs-title="You must <b>login</b> to add thin item to cart"
+                                class="card-button">Add to cart
+                        </button>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -90,6 +107,10 @@ Viewstl Javscript plugin is licensed under the MIT License - Copyright (c) 2019 
         </div>
     <?php } ?>
     <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         const colors = [];
         const types = [];
         let k = 0;

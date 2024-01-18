@@ -6,9 +6,9 @@
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="public/css/itemPropCSS.css">
-<link rel="stylesheet" href="public/css/itemCSS2.css">
+<link rel="stylesheet" href="public/css/itemCSS3.css">
 <link rel="stylesheet" href="public/css/customPrintCSS4.css">
-<script src="public/js/cartScript3.js"></script>
+<script src="public/js/cartScript.js"></script>
 <script src="public\js\colorExampleScript.js"></script>
 <!--https://www.viewstl.com/plugin/#intro
 Viewstl Javscript plugin is licensed under the MIT License - Copyright (c) 2019 Viewstl.com-->
@@ -154,18 +154,22 @@ Viewstl Javscript plugin is licensed under the MIT License - Copyright (c) 2019 
                         <div class="col" id="cartButton">
                             <?php if ($auth->isLogged()) { ?>
                                 <button data-bs-container="body" data-bs-toggle="popover"
+                                        type="button"
                                         data-bs-trigger="focus" id="cartButton1"
                                         data-bs-custom-class="addCart-popover"
                                         data-bs-placement="top" data-bs-content="Item was added to the cart"
-                                        onclick="addToCart(<?= $data['item']->getId() ?>,
+                                        onclick="addToCart(null,
                                                 false,
                                                 document.getElementById('colorSelect').options[document.getElementById('colorSelect').selectedIndex].value,
                                                 document.getElementById('materialSelect').options[document.getElementById('materialSelect').selectedIndex].value,
-                                                document.getElementById('layerSelect').options[document.getElementById('layerSelect').selectedIndex].value);addToOrder();"
+                                                document.getElementById('layerSelect').options[document.getElementById('layerSelect').selectedIndex].value,
+                                                parseFloat(document.getElementById('prize').value.slice(0, -1)),
+                                                document.getElementById('file').files[0].name);"
                                         class="card-button">Add to cart
                                 </button>
                             <?php } else { ?>
                                 <button data-bs-toggle="tooltip"
+                                        type="button"
                                         data-bs-custom-class="login-tooltip"
                                         data-bs-html="true" id="cartButton0"
                                         data-bs-title="You must <b>login</b> to add thin item to cart"
@@ -271,27 +275,6 @@ Viewstl Javscript plugin is licensed under the MIT License - Copyright (c) 2019 
             if (saveButt !== null) {
                 saveButt.style.display = 'block';
             }
-        }
-
-        function savePrint() {
-            let file = document.getElementById("file").files[0];
-            let fileBlob = new Blob([file], {type: ".stl,.obj"});
-            let fileName = file.name;
-            let colorSel = document.getElementById("colorSelect");
-            let color = colorSel.options[colorSel.selectedIndex].value;
-            let materialSel = document.getElementById("materialSelect");
-            let material = materialSel.options[materialSel.selectedIndex].value;
-            let layerSel = document.getElementById("layerSelect");
-            let layer = layerSel.options[layerSel.selectedIndex].value;
-
-            let url = `http://localhost/index.php?userId=${userId}&c=customPrint&a=savePrint`;
-            let request = new XMLHttpRequest();
-            request.onload = function () {
-                //let data = JSON.parse(request.responseText);
-                console.log(44);
-            };
-            request.open("POST", url)
-            request.send();
         }
     </script>
 </div>

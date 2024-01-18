@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="public/css/homeCSS.css">
 <link rel="stylesheet" href="public/css/itemCSS3.css">
 <script src="js/bootstrap.bundle.min.js"></script>
-<script src="public/js/cartScript3.js"></script>
+<script src="public/js/cartScript.js"></script>
 <div class="home-logo">
     <img class="img-fluid logo_home" src="resources/logo.png" alt="logo image">
 </div>
@@ -127,7 +127,7 @@
                                 data-bs-trigger="focus"
                                 data-bs-custom-class="addCart-popover"
                                 data-bs-placement="top" data-bs-content="Item was added to the cart"
-                                onclick="addToCart(<?=$item->getId()?>, true, null, null, null);addToOrder();"
+                                onclick="addToCart(<?=$item->getId()?>, true, null, null, null, null, null);"
                                 class="card-button">Add to cart</button>
                     <?php } else { ?>
                         <button href="#"

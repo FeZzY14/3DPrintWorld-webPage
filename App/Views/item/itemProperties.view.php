@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="public/css/itemPropCSS.css">
 <link rel="stylesheet" href="public/css/itemCSS3.css">
 <link rel="stylesheet" href="public/css/reviewFormCSS2.css">
-<script src="public/js/cartScript3.js"></script>
+<script src="public/js/cartScript.js"></script>
 <script src="public\js\colorExampleScript.js">
 </script>
 <script>
@@ -92,7 +92,8 @@
                                             false,
                                             document.getElementById('colorSelect').options[document.getElementById('colorSelect').selectedIndex].value,
                                             document.getElementById('materialSelect').options[document.getElementById('materialSelect').selectedIndex].value,
-                                            document.getElementById('layerSelect').options[document.getElementById('layerSelect').selectedIndex].value);addToOrder();"
+                                            document.getElementById('layerSelect').options[document.getElementById('layerSelect').selectedIndex].value,
+                                            null, null);"
                                     class="card-button">Add to cart
                             </button>
                         <?php } else { ?>

@@ -91,7 +91,7 @@
             <div class="col">
                 <?php if (sizeof($data['prices']) != 0) { ?>
                     <button type="button" class="btn btn-primary btn-block btn-lg checkout-button">
-                        <span>Checkout</span>
+                        <span>Order</span>
                         <span id="sumPrice"><?= array_sum($data['prices']) ?></span>
                     </button>
                 <?php } ?>
