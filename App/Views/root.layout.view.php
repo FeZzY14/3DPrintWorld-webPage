@@ -18,7 +18,7 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="public/css/layoutCSS2.css">
+    <link rel="stylesheet" href="public/css/layoutCSS.css">
 </head>
 <body>
 <header>
@@ -95,16 +95,16 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                         <h6>Information</h6>
                         <p>
-                            <a href="" class="footer-txt">Shipping</a>
+                            <a href="<?= $link->url("home.about") ?>" class="footer-txt">Shipping</a>
                         </p>
                         <p>
-                            <a href="" class="footer-txt">Payment</a>
+                            <a href="<?= $link->url("home.about") ?>" class="footer-txt">Payment</a>
                         </p>
                         <p>
-                            <a href="" class="footer-txt">Private policy</a>
+                            <a href="<?= $link->url("home.about") ?>" class="footer-txt">Private policy</a>
                         </p>
                         <p>
-                            <a href="" class="footer-txt">Term and Conditions</a>
+                            <a href="<?= $link->url("home.about") ?>" class="footer-txt">Term and Conditions</a>
                         </p>
                     </div>
                     <hr class="w-100 clearfix d-md-none"/>
@@ -165,7 +165,7 @@
         </div>
         <div class="copy text-center p-3">
             © 2023 Copyright:
-            <a class="text-white" href="https://youtube.com/"
+            <a class="text-white" href="<?= $link->url("home.index") ?>"
             >3DPrintWorld.com</a>
         </div>
     </footer>

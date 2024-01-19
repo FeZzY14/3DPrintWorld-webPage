@@ -6,9 +6,9 @@
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="public/css/itemPropCSS.css">
-<link rel="stylesheet" href="public/css/userItemCSS2.css">
-<link rel="stylesheet" href="public/css/customPrintCSS4.css">
-<link rel="stylesheet" href="public/css/itemCSS3.css">
+<link rel="stylesheet" href="public/css/userItemCSS.css">
+<link rel="stylesheet" href="public/css/customPrintCSS.css">
+<link rel="stylesheet" href="public/css/itemCSS.css">
 <script src="public/js/cartScript.js"></script>
 <script src="public\js\colorExampleScript.js"></script>
 <!--https://www.viewstl.com/plugin/#intro

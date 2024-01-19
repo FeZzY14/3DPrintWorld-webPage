@@ -6,8 +6,8 @@
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="public/css/itemPropCSS.css">
-<link rel="stylesheet" href="public/css/itemCSS3.css">
-<link rel="stylesheet" href="public/css/customPrintCSS4.css">
+<link rel="stylesheet" href="public/css/itemCSS.css">
+<link rel="stylesheet" href="public/css/customPrintCSS.css">
 <script src="public/js/cartScript.js"></script>
 <script src="public\js\colorExampleScript.js"></script>
 <!--https://www.viewstl.com/plugin/#intro
@@ -65,19 +65,9 @@ Viewstl Javscript plugin is licensed under the MIT License - Copyright (c) 2019 
                                     <input type="file" class="form-control" name="file" id="file" size="1"
                                            accept=".stl,.obj"
                                            onchange="stl_viewer.clean();stl_viewer.add_model({local_file:this.files[0], color:document.getElementById('colorSelect').options[document.getElementById('colorSelect').selectedIndex].value});onOptionChange()">
-                                    <script>
-                                        const fileInput = document.getElementById("file");
-                                        const myFile = new File([''], 'Default.obj', {
-                                            type: 'obj',
-                                            lastModified: new Date(),
-                                        });
-                                        const dataTransfer = new DataTransfer();
-                                        dataTransfer.items.add(myFile);
-                                        fileInput.files = dataTransfer.files;
-                                    </script>
                                 </div>
                                 <label class="form-control-label">Select all options then you can calculate the
-                                    prize</label>
+                                    price</label>
                             </div>
                         </div>
                     </div>
@@ -127,7 +117,7 @@ Viewstl Javscript plugin is licensed under the MIT License - Copyright (c) 2019 
                                 <button onclick="calculatePrize()"
                                         class="btn btn-outline-success search-button calculate-button"
                                         id="calculateButton" type="button">
-                                    Calculate prize
+                                    Calculate price
                                 </button>
                             </div>
                         </div>
@@ -182,99 +172,5 @@ Viewstl Javscript plugin is licensed under the MIT License - Copyright (c) 2019 
             </form>
         </div>
     </div>
-    <script>
-        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-        let saveButt = document.getElementById("saveButton");
-        let calculateButt = document.getElementById("calculateButton");
-        let cartButt = document.getElementById("cartButton");
-        if (saveButt !== null) {
-            saveButt.style.display = 'none';
-            document.getElementById("a2").style.textDecoration = 'none';
-        }
-        calculateButt.style.display = 'none';
-        cartButt.style.display = 'none';
-
-        function onOptionChange() {
-            let fileSel = document.getElementById("file");
-            let colorSel = document.getElementById("colorSelect");
-            let materialSel = document.getElementById("materialSelect");
-            let layerSel = document.getElementById("layerSelect");
-            let prizeText = document.getElementById("prize");
-
-            if (fileSel.files.length !== 0 && colorSel.selectedIndex !== 0 && materialSel.selectedIndex !== 0 && layerSel.selectedIndex !== 0) {
-                calculateButt.style.display = 'block';
-                prizeText.value = "-$";
-                cartButt.style.display = 'none';
-                if (saveButt !== null) {
-                    saveButt.style.display = 'none';
-                }
-            } else {
-                calculateButt.style.display = 'none';
-                cartButt.style.display = 'none';
-                prizeText.value = "-$";
-                cartButt.style.display = 'none';
-                if (saveButt !== null) {
-                    saveButt.style.display = 'none';
-                }
-            }
-
-            stl_viewer.set_color(1, colorSel.options[colorSel.selectedIndex].value);
-        }
-
-        function calculatePrize() {
-            let size = document.getElementById("file").files[0].size;
-            let prize;
-            let materialSel = document.getElementById("materialSelect");
-            let layerSel = document.getElementById("layerSelect");
-
-            switch (materialSel.selectedIndex) {
-                case 1:
-                    prize = size / 200;
-                    break;
-                case 2:
-                    prize = size / 150;
-                    break;
-                case 3:
-                    prize = size / 120;
-                    break;
-                case 4:
-                    prize = size / 120;
-                    break;
-                case 5:
-                    prize = size / 100;
-                    break;
-            }
-
-            switch (layerSel.selectedIndex) {
-                case 1:
-                    prize = prize / 100;
-                    break;
-                case 2:
-                    prize = prize / 120;
-                    break;
-                case 3:
-                    prize = prize / 130;
-                    break;
-                case 4:
-                    prize = prize / 150;
-                    break;
-                case 5:
-                    prize = prize / 200;
-                    break;
-            }
-            if (size === 0) {
-                prize = 0.01;
-            }
-
-            let prizeText = document.getElementById("prize");
-            prizeText.value = prize.toFixed(2) + "$";
-            cartButt.style.display = 'block';
-            if (saveButt !== null) {
-                saveButt.style.display = 'block';
-            }
-        }
-    </script>
+    <script src="public\js\customPrintScript.js"></script>
 </div>

@@ -26,3 +26,12 @@
     background-color: #e17743;
     border: 0;
 }
+
+.empty-cart {
+    color: #e39774;
+    font-size: 250px;
+}
+
+.empty-text {
+    padding-bottom: 80px;
+}

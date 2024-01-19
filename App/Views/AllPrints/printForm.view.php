@@ -5,7 +5,7 @@ $layout = 'auth';
 /** @var \App\Core\LinkGenerator $link */
 /**@var App\Models\Item $item */
 ?>
-<link rel="stylesheet" href="public/css/printFormCSS2.css">
+<link rel="stylesheet" href="public/css/printFormCSS.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
@@ -26,12 +26,19 @@ $layout = 'auth';
                     <form class="form-signin" method="post" action="<?= $data['item'] != null ? $link->url("modifyPrint",['id' => $data['item']->getId()]) : $link->url("printForm")?>">
                         <div class="form-group">
                             <label class="form-control-label">TITLE</label>
-                            <input type="text" class="form-control" name="title" id="title" value="<?php if ($data['item'] != null) { echo $data['item']->getTitle(); } else {echo '';} ?>"
+                            <input aria-label="form-control-label" type="text" class="form-control" name="title" id="title" value="<?php if ($data['item'] != null) { echo $data['item']->getTitle(); } else {echo '';} ?>"
                                    required autofocus>
                         </div>
                         <select name="category" id="category" class="form-select" aria-label="Default select example">
                             <option selected>Category</option>
-                            <option value="0.10">0.10</option>
+                            <option value="Puzzle">Puzzle</option>
+                            <option value="Toys for children">Toys for children</option>
+                            <option value="Phone stand">Phone stand</option>
+                            <option value="Laptop stand">Laptop stand</option>
+                            <option value="Planter">Planter</option>
+                            <option value="Garden accessories">Garden accessories</option>
+                            <option value="Pen holder">Pen holder</option>
+                            <option value="Puzzle">Puzzle</option>
                             <option value="Cable management">Cable management</option>
                             <option value="others">Others</option>
                             <option value="Cycling">Cycling</option>
@@ -40,18 +47,18 @@ $layout = 'auth';
                         </select>
                         <div class="form-group">
                             <label class="form-control-label">IMAGE(URL)</label>
-                            <input type="url" class="form-control" name="image" id="image" required
+                            <input aria-label="form-control-label" type="url" class="form-control" name="image" id="image" required
                                    value="<?php if ($data['item'] != null) { echo $data['item']->getPicture(); } else {echo '';} ?>">
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">DESCRIPTION</label>
-                            <textarea rows="5" type="text" class="form-control" name="description" id="description" required ><?php
+                            <textarea aria-label="form-control-label" rows="5" type="text" class="form-control" name="description" id="description" required ><?php
                                 if ($data['item'] != null) { echo htmlspecialchars($data['item']->getText()); } else {echo '';}
                                 ?></textarea>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">PRIZE</label>
-                            <input type="number" step="0.01" min="0.01" class="form-control" name="prize" id="prize" required
+                            <input aria-label="form-control-label" type="number" step="0.01" min="0.01" class="form-control" name="prize" id="prize" required
                                    value="<?php if ($data['item'] != null) { echo $data['item']->getPrize(); } else {echo '';} ?>">
                         </div>
                         <div class="col-lg-12">

@@ -49,12 +49,39 @@
     text-decoration: none;
     font-size: 25px;
     transition: background-color .5s;
+    border-width: 0;
 }
 .card-button:hover {
     background-color: #e17743;
 }
-.card-img-top{
-    max-height: 100%;
-    max-width: 100%;
-    border-radius: 8px 8px 0 0;
+
+@media  screen and (max-width: 767px) and (min-width: 320px) {
+    .card-img-top{
+        height: 80vw;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;
+    }
+}
+
+@media  screen and (max-width: 4000px) and (min-width: 768px){
+    .card-img-top{
+        height: 15vw;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;
+    }
+}
+
+.login-tooltip {
+    --bs-tooltip-bg: #5c9ead;
+    --bs-tooltip-color: white;
+    --bs-tooltip-font-size: 28px;
+    --bs-tooltip-arrow-height: 20px;
+}
+
+.addCart-popover {
+    --bs-popover-bg: #5c9ead;
+    --bs-popover-body-color: white;
+    --bs-popover-arrow-height: 10px;
 }

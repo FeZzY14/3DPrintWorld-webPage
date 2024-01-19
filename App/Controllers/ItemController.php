@@ -66,6 +66,7 @@ class ItemController extends AControllerBase
         }
 
         $review->setStars($rating);
+        date_default_timezone_set('Europe/Bratislava');
         $review->setDate(date("Y-m-d H:i:s"));
         $review->save();
 
@@ -92,11 +93,11 @@ class ItemController extends AControllerBase
             $review->setImage(NULL);
         }
         $review->setStars($newRating);
+        date_default_timezone_set('Europe/Bratislava');
         $review->setDate(date("Y-m-d H:i:s"));
         $review->save();
 
         return $this->json($review);
-        //return $this->redirect($this->url("item.itemProperties",['id' => $itemId]));
     }
 
     public function deleteReview(): Response

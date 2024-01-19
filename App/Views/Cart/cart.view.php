@@ -8,13 +8,18 @@
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="public/css/homeCSS.css">
-<link rel="stylesheet" href="public/css/itemCSS3.css">
-<link rel="stylesheet" href="public/css/cartCSS.css">
+<link rel="stylesheet" href="public/css/itemCSS.css">
+<link rel="stylesheet" href="public/css/cartCSS8.css">
 <script src="js/bootstrap.bundle.min.js"></script>
-<script src="public/js/cartScript2.js"></script>
-<div class="home-logo">
-    <img class="img-fluid logo_home" src="resources/logo.png" alt="logo image">
-</div>
+<script src="public/js/cartScript.js"></script>
+<?php if (sizeof($data['prices']) == 0) {?>
+    <div class="home-logo">
+        <i class="bi bi-cart-x empty-cart"></i><br>
+        <h2 class="empty-text">
+            Your cart is empty
+        </h2>
+    </div>
+<?php } else { ?>
 <section class="h-100 h-custom">
     <div class="container h-100 py-5">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -71,7 +76,7 @@
                                     </div>
                                 </td>
                                 <td class="align-middle">
-                                    <p id="price<?= $i ?>" class="mb-0"><?= $data['prices'][$i] ?></p>
+                                    <p id="price<?= $i ?>" class="mb-0"><?= $data['prices'][$i] ?>$</p>
                                 </td>
                                 <td class="align-middle">
                                     <a href="<?= $link->url("cart.removeOrder", ["id" => $data['ids'][$i]]) ?>"
@@ -90,10 +95,10 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
                 <?php if (sizeof($data['prices']) != 0) { ?>
-                    <button type="button" class="btn btn-primary btn-block btn-lg checkout-button">
+                    <a href="<?= $link->url("cart.completeOrder") ?>" type="button" class="btn btn-primary btn-block btn-lg checkout-button">
                         <span>Order</span>
-                        <span id="sumPrice"><?= array_sum($data['prices']) ?></span>
-                    </button>
+                        <span id="sumPrice"><?= array_sum($data['prices']) ?>$</span>
+                    </a>
                 <?php } ?>
             </div>
         </div>
@@ -114,3 +119,4 @@
         }
     </script>
 </section>
+<?php } ?>

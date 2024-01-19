@@ -49,28 +49,4 @@ class HomeController extends AControllerBase
             ]
         );
     }
-
-    /**
-     * Example of an action accessible without authorization
-     * @return \App\Core\Responses\ViewResponse
-     */
-    public function contact(): Response
-    {
-        return $this->html();
-    }
-
-    public function allPrints(): Response
-    {
-        return $this->html();
-    }
-
-    public function about(): Response
-    {
-        return $this->html();
-    }
-
-    public function customPrint(): Response
-    {
-        return $this->html();
-    }
 }

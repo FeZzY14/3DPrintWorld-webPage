@@ -204,6 +204,11 @@ a {
 }
 
 .noPrintsIcon {
-    font-size: 100px;
-    color: #ac2bac;
+    font-size: 250px;
+    color: #e39774;
+}
+
+.noPrints {
+    display: flex;
+    justify-content: center;
 }

@@ -134,4 +134,17 @@ class CartController extends AControllerBase
 
         return $this->redirect($this->url("cart"));
     }
+
+    public function completeOrder(): Response
+    {
+        $userId = $this->app->getAuth()->getLoggedUserId();
+
+        $items = CartItem::getAll(whereClause: "`userId` like ?", whereParams: [$userId], orderBy: '`id` desc');
+
+        for ($i = 0; $i < sizeof($items); $i++) {
+            $items[$i]->delete();
+        }
+
+        return $this->html();
+    }
 }

@@ -8,8 +8,8 @@
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="public/css/allItemsCSS.css">
-<link rel="stylesheet" href="public/css/itemCSS3.css">
-<script src="js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="public/css/itemCSS.css">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="public/js/cartScript.js"></script>
 <?php if ($data['showMess'] == 1) { ?>
     <div class="container">
@@ -49,7 +49,7 @@
             <div class="input-group">
                 <input name="search" id="search" class="form-control" type="search" placeholder="Search"
                        aria-label="Search">
-                <button class="btn btn-outline-success search-button" name="searchSubmit">Search</button>
+                <button class="btn search-button" name="searchSubmit">Search</button>
             </div>
         </form>
     </div>
@@ -62,7 +62,7 @@
                 <span class="input-group-text">-</span>
                 <input type="number" min="0" max="1000" class="form-control" placeholder="max prize"
                        aria-label="max prize" name="maxPrize" required>
-                <button class="btn btn-outline-success search-button" name="filter">Filter</button>
+                <button class="btn search-button" name="filter">Filter</button>
             </div>
         </div>
     </form>
@@ -70,7 +70,7 @@
 <?php if ($auth->isAdmin()) { ?>
     <div class="add-button-div">
         <a href="<?= $link->url("allPrints.printForm") ?>">
-            <button class="btn btn-outline-success search-button add-button">Add print
+            <button class="btn search-button add-button">Add print
             </button>
         </a>
     </div>
@@ -108,13 +108,14 @@
             </button>
             <div class="collapse" id="orders-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "others", 'page' => 1]) ?>"
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Puzzle", 'page' => 1]) ?>"
                            class="collapse-link">Puzzle</a></li>
-                    <li>
-                        <a href="<?= $link->url("allPrints.allPrints", ['category' => "Toys for children", 'page' => 1]) ?>"
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Toys for children", 'page' => 1]) ?>"
                            class="collapse-link">Toys for children</a></li>
-                    <li><a href="#" class="collapse-link">Table games</a></li>
-                    <li><a href="#" class="collapse-link">Action figures</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Table games", 'page' => 1]) ?>"
+                           class="collapse-link">Table games</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Action figures", 'page' => 1]) ?>"
+                           class="collapse-link">Action figures</a></li>
                 </ul>
             </div>
         </li>
@@ -125,9 +126,12 @@
             </button>
             <div class="collapse" id="orders-collapse1">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">Home decoration</a></li>
-                    <li><a href="#" class="collapse-link">Organizers</a></li>
-                    <li><a href="#" class="collapse-link">Bathroom accessories</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Home decoration", 'page' => 1]) ?>"
+                           class="collapse-link">Home decoration</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Organizers", 'page' => 1]) ?>"
+                           class="collapse-link">Organizers</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Bathroom accessories", 'page' => 1]) ?>"
+                           class="collapse-link">Bathroom accessories</a></li>
                 </ul>
             </div>
         </li>
@@ -138,9 +142,12 @@
             </button>
             <div class="collapse" id="orders-collapse3">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">Phone stands</a></li>
-                    <li><a href="#" class="collapse-link">Laptop stands</a></li>
-                    <li><a href="#" class="collapse-link">Headphone stands</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Phone stands", 'page' => 1]) ?>"
+                           class="collapse-link">Phone stands</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Laptop stands", 'page' => 1]) ?>"
+                           class="collapse-link">Laptop stands</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Headphone stands", 'page' => 1]) ?>"
+                           class="collapse-link">Headphone stands</a></li>
                 </ul>
             </div>
         </li>
@@ -151,9 +158,12 @@
             </button>
             <div class="collapse" id="orders-collapse4">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">Garden accessories</a></li>
-                    <li><a href="#" class="collapse-link">Plant pots</a></li>
-                    <li><a href="#" class="collapse-link">Planters</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Garden accessories", 'page' => 1]) ?>"
+                           class="collapse-link">Garden accessories</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Plant pots", 'page' => 1]) ?>"
+                           class="collapse-link">Plant pots</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Planters", 'page' => 1]) ?>"
+                           class="collapse-link">Planters</a></li>
                 </ul>
             </div>
         </li>
@@ -164,11 +174,14 @@
             </button>
             <div class="collapse" id="orders-collapse5">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">Desk organizers</a></li>
-                    <li><a href="#" class="collapse-link">Monitor stands</a></li>
-                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Cable management"]) ?>"
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Desk organizers", 'page' => 1]) ?>"
+                           class="collapse-link">Desk organizers</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Monitor stands", 'page' => 1]) ?>"
+                           class="collapse-link">Monitor stands</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Cable management", 'page' => 1]) ?>"
                            class="collapse-link">Cable management</a></li>
-                    <li><a href="#" class="collapse-link">Pen holders</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Pen holders", 'page' => 1]) ?>"
+                           class="collapse-link">Pen holders</a></li>
                 </ul>
             </div>
         </li>
@@ -179,8 +192,10 @@
             </button>
             <div class="collapse" id="orders-collapse7">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">Phone holders</a></li>
-                    <li><a href="#" class="collapse-link">Replacement parts</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Phone holders", 'page' => 1]) ?>"
+                           class="collapse-link">Phone holders</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Replacement parts", 'page' => 1]) ?>"
+                           class="collapse-link">Replacement parts</a></li>
                 </ul>
             </div>
         </li>
@@ -191,9 +206,12 @@
             </button>
             <div class="collapse" id="orders-collapse8">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="collapse-link">Fitness equipment</a></li>
-                    <li><a href="#" class="collapse-link">Cycling</a></li>
-                    <li><a href="#" class="collapse-link">Camping gear</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Fitness equipment", 'page' => 1]) ?>"
+                           class="collapse-link">Fitness equipment</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Cycling", 'page' => 1]) ?>"
+                           class="collapse-link">Cycling</a></li>
+                    <li><a href="<?= $link->url("allPrints.allPrints", ['category' => "Camping gear", 'page' => 1]) ?>"
+                           class="collapse-link">Camping gear</a></li>
                 </ul>
             </div>
     </ul>
@@ -222,10 +240,12 @@
         foreach ($data['items'] as $item) {
             $rowNum++; ?>
             <div class="col-md-3">
-                <div class="card-sl">
+                <div class="card-sl h-100">
                     <a class="item-page-link" href="<?= $link->url('item.itemProperties', ['id' => $item->getId()]) ?>">
-                        <img class="card-img-top" alt="product image" src="<?= $item->getPicture() ?>">
-                        <div class="card-body">
+                        <div class="embed-responsive embed-responsive-4by3">
+                        <img class="img-fluid card-img-top" alt="product image" src="<?= $item->getPicture() ?>">
+                        </div>
+                            <div class="card-body">
                             <h3 class="card-title" id="card-title<?=$rowNum?>"><?= $item->getTitle() ?></h3>
                             <p class="card-text">
                                 <?= $item->getText() ?>

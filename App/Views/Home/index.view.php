@@ -8,8 +8,8 @@
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="public/css/homeCSS.css">
-<link rel="stylesheet" href="public/css/itemCSS3.css">
-<script src="js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="public/css/itemCSS.css">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="public/js/cartScript.js"></script>
 <div class="home-logo">
     <img class="img-fluid logo_home" src="resources/logo.png" alt="logo image">

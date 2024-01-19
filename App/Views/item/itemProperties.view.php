@@ -196,6 +196,7 @@
             </div>
         </div>
     </div>
+    <script src="public\js\reviewsScript.js"></script>
     <script>
 
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
@@ -203,32 +204,5 @@
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         onOptionChange();
-
-        function onOptionChange() {
-            let addCart1 = document.getElementById("cartButton1");
-            let addCart0 = document.getElementById("cartButton0");
-            let colorSel = document.getElementById("colorSelect");
-            let materialSel = document.getElementById("materialSelect");
-            let layerSel = document.getElementById("layerSelect");
-
-            if (colorSel.selectedIndex !== 0 && materialSel.selectedIndex !== 0 && layerSel.selectedIndex !== 0) {
-                if (addCart1 !== null) {
-                    addCart1.style.display = 'block';
-                }
-                if (addCart0 !== null) {
-                    addCart0.style.display = 'block';
-                }
-            } else {
-                if (addCart1 !== null) {
-                    addCart1.style.display = 'none';
-                }
-                if (addCart0 !== null) {
-                    addCart0.style.display = 'none';
-                }
-            }
-        }
-    </script>
-    <script src="public\js\reviewsScript2.js"></script>
-    <script>
     </script>
 </div>
